@@ -7,11 +7,29 @@ function draw() {
     //Hintergrund
     crc2.fillStyle = "#CEF6EC";
     crc2.fillRect(0, 0, 800, 600);
-    //Berg 1
+    //Berg 1- links
     crc2.beginPath();
-    crc2.moveTo(100, 500);
-    crc2.lineTo(450, 150);
-    crc2.lineTo(750, 150);
+    crc2.moveTo(150, 600);
+    crc2.lineTo(400, 140);
+    crc2.lineTo(700, 600);
+    crc2.closePath();
+    crc2.stroke();
+    crc2.fillStyle = "#ffffff";
+    crc2.fill();
+    //Berg 2- mitte
+    crc2.beginPath();
+    crc2.moveTo(330, 600);
+    crc2.lineTo(550, 50);
+    crc2.lineTo(780, 600);
+    crc2.closePath();
+    crc2.stroke();
+    crc2.fillStyle = "#ffffff";
+    crc2.fill();
+    //Berg 3- rechts
+    crc2.beginPath();
+    crc2.moveTo(330, 600);
+    crc2.lineTo(550, 50);
+    crc2.lineTo(780, 600);
     crc2.closePath();
     crc2.stroke();
     crc2.fillStyle = "#ffffff";
