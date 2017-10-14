@@ -106,5 +106,26 @@ function draw() {
     crc2.arc(693, 46, 20, 0, 2 * Math.PI);
     crc2.fillStyle = "#99E5D0";
     crc2.fill();
-    //Baum
+    //Baum1
+    crc2.beginPath();
+    crc2.moveTo(100, 350);
+    crc2.lineTo(60, 450);
+    crc2.lineTo(140, 450);
+    crc2.closePath();
+    crc2.stroke();
+    crc2.fillStyle = "#39BF54";
+    crc2.fill();
+    crc2.fillStyle = "#8B4513";
+    crc2.fillRect(90, 450, 20, 30);
+    //Baum2
+    crc2.beginPath();
+    crc2.moveTo(240, 400);
+    crc2.lineTo(200, 500);
+    crc2.lineTo(280, 500);
+    crc2.closePath();
+    crc2.stroke();
+    crc2.fillStyle = "#39BF54";
+    crc2.fill();
+    crc2.fillStyle = "#8B4513";
+    crc2.fillRect(230, 500, 20, 30);
 }
