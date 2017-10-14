@@ -1,12 +1,12 @@
 /* Mobile */
 
-	canvas{
+canvas{
 		width: 100%;
 }
 
 /* Desktop */
 
-@media screen and(min-width:64em) {
+@media screen and (min-width: 1024px) {
 	canvas{
 		width: 800px;
 		height: 600px;
