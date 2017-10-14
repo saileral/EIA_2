@@ -154,21 +154,3 @@ function draw(): void {
     crc2.fillStyle = "#8B4513";
     crc2.fillRect(230, 500, 20, 30);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
