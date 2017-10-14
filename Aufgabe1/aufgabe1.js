@@ -80,14 +80,31 @@ function draw() {
     crc2.arc(800, 0, 80, 0, 2 * Math.PI);
     crc2.fillStyle = "#F7FE2E";
     crc2.fill();
-    //Wolke
+    //Wolke1
     crc2.beginPath();
     crc2.arc(200, 90, 30, 0, 2 * Math.PI);
     crc2.fillStyle = "#99E5D0";
     crc2.fill();
-    /*
-  
     crc2.beginPath();
-    crc2.arc(200, 50, 40, 0, 2 * Math.PI);
-    crc2.fill();*/
+    crc2.arc(245, 90, 30, 0, 2 * Math.PI);
+    crc2.fillStyle = "#99E5D0";
+    crc2.fill();
+    crc2.beginPath();
+    crc2.arc(223, 70, 25, 0, 2 * Math.PI);
+    crc2.fillStyle = "#99E5D0";
+    crc2.fill();
+    //Wolke2
+    crc2.beginPath();
+    crc2.arc(675, 65, 25, 0, 2 * Math.PI);
+    crc2.fillStyle = "#99E5D0";
+    crc2.fill();
+    crc2.beginPath();
+    crc2.arc(710, 65, 25, 0, 2 * Math.PI);
+    crc2.fillStyle = "#99E5D0";
+    crc2.fill();
+    crc2.beginPath();
+    crc2.arc(693, 46, 20, 0, 2 * Math.PI);
+    crc2.fillStyle = "#99E5D0";
+    crc2.fill();
+    //Baum
 }
