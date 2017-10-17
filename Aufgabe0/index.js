@@ -9,3 +9,4 @@ function dialogFeld() {
             "Hallo " + eingabe + "! Herzlich Willkommen auf dieser Seite.";
     }
 }
+//# sourceMappingURL=index.js.map
