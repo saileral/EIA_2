@@ -133,7 +133,7 @@ function draw(): void {
     crc2.fillStyle = "#99E5D0";
     crc2.fill();
     
-    //Baum1
+    /* //Baum1
     crc2.beginPath();
     crc2.moveTo(100, 350);
     crc2.lineTo(60, 450);
@@ -157,23 +157,27 @@ function draw(): void {
     crc2.fill();
     
     crc2.fillStyle = "#8B4513";
-    crc2.fillRect(230, 500, 20, 30);
+    crc2.fillRect(230, 500, 20, 30);*/
+    drawTree(150, 400, "#39BF54");
 }
     
 //Funktion für Baum
        
 function drawTree(_x: number, _y: number, _color: string): void {
         
+    crc2.fillStyle = "#8B4513";
+    crc2.fillRect(_x, _y, 20, 30);
+    
     crc2.beginPath();
-    crc2.moveTo(_x, _y);
-    crc2.lineTo(_x + 40, _y);
-    crc2.lineTo(_x + 20, _y - 60);
+    crc2.moveTo(_x - 30, _y);
+    crc2.lineTo(_x + 10, _y - 100);
+    crc2.lineTo(_x + 50, _y);
     crc2.closePath();
-    crc2.strokeStyle = _color;
     crc2.stroke();
     crc2.fillStyle = _color;
     crc2.fill();
     
+
 }    
     
     
