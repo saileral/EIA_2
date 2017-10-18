@@ -4,12 +4,13 @@
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 namespace Aufgabe2 {
 window.addEventListener("load", draw);
+let crc2: CanvasRenderingContext2D;
 
 function draw(): void {
     let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
     console.log(canvas);
 
-    let crc2: CanvasRenderingContext2D = canvas.getContext("2d");
+    crc2 = canvas.getContext("2d");
     console.log(crc2);
     
     //Hintergrund
@@ -158,4 +159,27 @@ function draw(): void {
     crc2.fillStyle = "#8B4513";
     crc2.fillRect(230, 500, 20, 30);
 }
+    
+//Funktion für Baum
+       
+function drawTree(_x: number, _y: number, _color: string): void {
+        
+    crc2.beginPath();
+    crc2.moveTo(_x, _y);
+    crc2.lineTo(_x + 40, _y);
+    crc2.lineTo(_x + 20, _y - 60);
+    crc2.closePath();
+    crc2.strokeStyle = _color;
+    crc2.stroke();
+    crc2.fillStyle = _color;
+    crc2.fill();
+    
+}    
+    
+    
+    
+    
+    
+    
+    
     }

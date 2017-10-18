@@ -5,10 +5,11 @@
 var Aufgabe2;
 (function (Aufgabe2) {
     window.addEventListener("load", draw);
+    var crc2;
     function draw() {
         var canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
-        var crc2 = canvas.getContext("2d");
+        crc2 = canvas.getContext("2d");
         console.log(crc2);
         //Hintergrund
         crc2.fillStyle = "#EFFBF8";
@@ -135,5 +136,17 @@ var Aufgabe2;
         crc2.fillStyle = "#8B4513";
         crc2.fillRect(230, 500, 20, 30);
     }
+    //Funktion f�r Baum
+    function drawTree(_x, _y, _color) {
+        crc2.beginPath();
+        crc2.moveTo(_x, _y);
+        crc2.lineTo(_x + 40, _y);
+        crc2.lineTo(_x + 20, _y - 60);
+        crc2.closePath();
+        crc2.strokeStyle = _color;
+        crc2.stroke();
+        crc2.fillStyle = _color;
+        crc2.fill();
+    }
 })(Aufgabe2 || (Aufgabe2 = {}));
-//# sourceMappingURL=aufgabe1.js.map
+//# sourceMappingURL=aufgabe2.js.map
