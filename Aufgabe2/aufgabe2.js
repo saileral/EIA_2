@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:14.10.17
+     Datum:19.10.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 var Aufgabe2;
 (function (Aufgabe2) {
@@ -113,34 +113,22 @@ var Aufgabe2;
         crc2.arc(693, 46, 20, 0, 2 * Math.PI);
         crc2.fillStyle = "#99E5D0";
         crc2.fill();
-        /* //Baum1
-        crc2.beginPath();
-        crc2.moveTo(100, 350);
-        crc2.lineTo(60, 450);
-        crc2.lineTo(140, 450);
-        crc2.closePath();
-        crc2.stroke();
-        crc2.fillStyle = "#39BF54";
-        crc2.fill();
-        
-        crc2.fillStyle = "#8B4513";
-        crc2.fillRect(90, 450, 20, 30);
-    
-        //Baum2
-        crc2.beginPath();
-        crc2.moveTo(240, 400);
-        crc2.lineTo(200, 500);
-        crc2.lineTo(280, 500);
-        crc2.closePath();
-        crc2.stroke();
-        crc2.fillStyle = "#39BF54";
-        crc2.fill();
-        
-        crc2.fillStyle = "#8B4513";
-        crc2.fillRect(230, 500, 20, 30);*/
-        drawTree(150, 400, "#39BF54");
+        //fester Baum mit Funktionaaufruf
+        drawTree(100, 500, "#39BF54");
+        //B�ume durch Zufall/Schleife
+        for (var i = 0; i < 5; i++) {
+            var x = 40 + Math.random() * 180;
+            var y = 400 + Math.random() * 180;
+            drawTree(x, y, "#39BF54");
+        }
+        //Schneeflocken durch Zufall
+        for (var i = 0; i < 500; i++) {
+            var x = 0 + Math.random() * 800;
+            var y = 0 + Math.random() * 600;
+            drawSnow(x, y, 2, 0, 2 * Math.PI, "#ffffff");
+        }
     }
-    //Funktion f�r Baum
+    //Funktion f�r B�ume
     function drawTree(_x, _y, _color) {
         crc2.fillStyle = "#8B4513";
         crc2.fillRect(_x, _y, 20, 30);
@@ -150,6 +138,13 @@ var Aufgabe2;
         crc2.lineTo(_x + 50, _y);
         crc2.closePath();
         crc2.stroke();
+        crc2.fillStyle = _color;
+        crc2.fill();
+    }
+    //Funktion f�r Schneeflocken
+    function drawSnow(_x1, _y1, _radius, _start, _end, _color) {
+        crc2.beginPath();
+        crc2.arc(_x1, _y1, _radius, _start, _end);
         crc2.fillStyle = _color;
         crc2.fill();
     }
