@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:27.10.17
+     Datum:28.10.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 namespace Aufgabe3 {
     window.addEventListener("load", draw);
@@ -132,7 +132,7 @@ namespace Aufgabe3 {
         }
         for (let i: number = 0; i < 2; i++) {
             cloudX[i] = 0 + Math.random() * 800;
-            cloudY[i] = 130 /*+ Math.random() * 100*/;
+            cloudY[i] = 130;
         }
         for (let i: number = 0; i < 1; i++) {
             skidriverX[i] = 0;
@@ -144,7 +144,6 @@ namespace Aufgabe3 {
 
         //Funktionsaufruf
         animate();
-
     }
 
     //Funktion für Bäume    
@@ -161,8 +160,6 @@ namespace Aufgabe3 {
         crc2.stroke();
         crc2.fillStyle = _color;
         crc2.fill();
-
-
     }
 
     //Funktion für Schneeflocken
@@ -172,7 +169,6 @@ namespace Aufgabe3 {
         crc2.arc(_x1, _y1, 2, 0, 2 * Math.PI);
         crc2.fillStyle = "#ffffff";
         crc2.fill();
-
     }
 
 
@@ -221,7 +217,7 @@ namespace Aufgabe3 {
 
         crc2.beginPath();
         crc2.arc(_x + 18, _y - 50, 12, 0, 2 * Math.PI);
-        crc2.fillStyle = "#ff0000";
+        crc2.fillStyle = "#000000";
         crc2.fill();
 
         crc2.fillStyle = "#000000";
@@ -233,7 +229,7 @@ namespace Aufgabe3 {
         crc2.fillStyle = "#000000";
         crc2.beginPath();
         crc2.moveTo(_x + 40, _y - 30);
-        crc2.lineTo(_x + 40, _y - 15);
+        crc2.lineTo(_x + 55, _y - 10);
         crc2.stroke();
     }
 
