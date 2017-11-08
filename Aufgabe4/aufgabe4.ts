@@ -6,15 +6,22 @@ namespace Aufgabe4 {
     window.addEventListener("load", draw);
     let crc2: CanvasRenderingContext2D;
 
+    //Interface mit Infos für Skifahrer
+    interface SkidriverInfo {
+        x: number;
+        y: number;
+        dx: number;
+        dy: number;
+        color: string;
+    }
 
+    let skidriver: SkidriverInfo[] = [];
     let snowX: number[] = [];
     let snowY: number[] = [];
     let cloudX: number[] = [];
     let cloudY: number[] = [];
     let cloudSX: number = 10;
     let cloudSY: number = 60;
-    let skidriverX: number[] = [];
-    let skidriverY: number[] = [];
 
     let imgData: ImageData;
 
@@ -134,9 +141,14 @@ namespace Aufgabe4 {
             cloudX[i] = 0 + Math.random() * 800;
             cloudY[i] = 130;
         }
-        for (let i: number = 0; i < 1; i++) {
-            skidriverX[i] = 0;
-            skidriverY[i] = 150;
+        for (let i: number = 0; i < 3; i++) {
+            skidriver[i] = {
+                x: 0,
+                y: 150,
+                dx: Math.random() * 1 + 2,
+                dy: Math.random() * 1 + 2,
+                color: "hsl(" + Math.random() * 360 + ", 100%, 50%)"
+            };
         }
 
         //Hintergrund speichern
@@ -209,27 +221,30 @@ namespace Aufgabe4 {
     }
 
     //Funktion für Skifahrer
-    function skidriver(_x: number, _y: number): void {
-        crc2.fillStyle = "#000000";
-        crc2.fillRect(_x, _y, 50, -10);
+    function drawAndMoveSkidriver(_Skidriver: SkidriverInfo): void {
+        _Skidriver.x += _Skidriver.dx * 3.2;
+        _Skidriver.y += _Skidriver.dy * 2; //Steigung
 
-        crc2.fillRect(_x + 10, _y - 10, 16, -40);
+        crc2.fillStyle = _Skidriver.color;
+        crc2.fillRect(_Skidriver.x, _Skidriver.y, 50, -10);
+
+        crc2.fillRect(_Skidriver.x + 10, _Skidriver.y - 10, 16, -40);
 
         crc2.beginPath();
-        crc2.arc(_x + 18, _y - 50, 12, 0, 2 * Math.PI);
-        crc2.fillStyle = "#000000";
+        crc2.arc(_Skidriver.x + 18, _Skidriver.y - 50, 12, 0, 2 * Math.PI);
+        crc2.fillStyle = _Skidriver.color;
         crc2.fill();
 
-        crc2.fillStyle = "#000000";
+        crc2.fillStyle = _Skidriver.color;
         crc2.beginPath();
-        crc2.moveTo(_x + 20, _y - 35);
-        crc2.lineTo(_x + 40, _y - 30);
+        crc2.moveTo(_Skidriver.x + 20, _Skidriver.y - 35);
+        crc2.lineTo(_Skidriver.x + 40, _Skidriver.y - 30);
         crc2.stroke();
 
-        crc2.fillStyle = "#000000";
+        crc2.fillStyle = _Skidriver.color;
         crc2.beginPath();
-        crc2.moveTo(_x + 40, _y - 30);
-        crc2.lineTo(_x + 55, _y - 10);
+        crc2.moveTo(_Skidriver.x + 40, _Skidriver.y - 30);
+        crc2.lineTo(_Skidriver.x + 55, _Skidriver.y - 10);
         crc2.stroke();
     }
 
@@ -265,14 +280,13 @@ namespace Aufgabe4 {
         cloudSmall(cloudSX, cloudSY);
 
         //Skifahrer
-        for (let i: number = 0; i < skidriverX.length; i++) {
-            if (skidriverX[i] > 800) {
-                skidriverX[i] = 0;
-                skidriverY[i] = 150;
+        for (let i: number = 0; i < skidriver.length; i++) {
+            drawAndMoveSkidriver(skidriver[i]);
+
+            if (skidriver[i].x > 800) {
+                skidriver[i].x = 0;
+                skidriver[i].y = 150;
             }
-            skidriverY[i] += 3;
-            skidriverX[i] += 5;
-            skidriver(skidriverX[i], skidriverY[i]);
         }
 
         window.setTimeout(animate, 20); //Alle 20ms startet Funktion sich selbst neu
