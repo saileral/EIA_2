@@ -79,7 +79,7 @@ namespace Aufgabe4 {
         //Skipiste
         crc2.beginPath();
         crc2.moveTo(0, 120);
-        crc2.lineTo(900, 600);
+        crc2.lineTo(1000, 600);
         crc2.lineTo(0, 600);
         crc2.closePath();
         crc2.stroke();
@@ -89,29 +89,29 @@ namespace Aufgabe4 {
         //Skilift
         crc2.beginPath();
         crc2.moveTo(0, 60);
-        crc2.lineTo(1010, 600);
+        crc2.lineTo(1110, 600);
         crc2.stroke();
 
         //Gondel 1
         crc2.beginPath();
-        crc2.moveTo(200, 166);
-        crc2.lineTo(200, 195);
+        crc2.moveTo(200, 156);
+        crc2.lineTo(200, 185);
         crc2.stroke();
 
         crc2.beginPath();
-        crc2.moveTo(180, 195);
-        crc2.lineTo(220, 195);
+        crc2.moveTo(180, 184);
+        crc2.lineTo(220, 185);
         crc2.stroke();
 
         //Gondel 2
         crc2.beginPath();
-        crc2.moveTo(700, 434);
-        crc2.lineTo(700, 463);
+        crc2.moveTo(700, 401);
+        crc2.lineTo(700, 430);
         crc2.stroke();
 
         crc2.beginPath();
-        crc2.moveTo(680, 463);
-        crc2.lineTo(720, 463);
+        crc2.moveTo(680, 430);
+        crc2.lineTo(720, 430);
         crc2.stroke();
 
         //Sonne
@@ -145,8 +145,8 @@ namespace Aufgabe4 {
             skidriver[i] = {
                 x: 0,
                 y: 150,
-                dx: Math.random() * 1 + 2,
-                dy: Math.random() * 1 + 2,
+                dx: Math.random() * 1 + 1.5,
+                dy: Math.random() * 1 + 1.5,
                 color: "hsl(" + Math.random() * 360 + ", 100%, 50%)"
             };
         }
