@@ -178,7 +178,7 @@ var Aufgabe4;
     }
     //Funktion f�r Skifahrer
     function drawAndMoveSkidriver(_Skidriver) {
-        _Skidriver.x += _Skidriver.dx * 3.2;
+        _Skidriver.x += _Skidriver.dx * 3;
         _Skidriver.y += _Skidriver.dy * 2; //Steigung
         crc2.fillStyle = _Skidriver.color;
         crc2.fillRect(_Skidriver.x, _Skidriver.y, 50, -10);

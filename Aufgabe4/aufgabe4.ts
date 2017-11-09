@@ -222,7 +222,7 @@ namespace Aufgabe4 {
 
     //Funktion für Skifahrer
     function drawAndMoveSkidriver(_Skidriver: SkidriverInfo): void {
-        _Skidriver.x += _Skidriver.dx * 3.2;
+        _Skidriver.x += _Skidriver.dx * 3;
         _Skidriver.y += _Skidriver.dy * 2; //Steigung
 
         crc2.fillStyle = _Skidriver.color;
@@ -288,7 +288,6 @@ namespace Aufgabe4 {
                 skidriver[i].y = 150;
             }
         }
-
         window.setTimeout(animate, 20); //Alle 20ms startet Funktion sich selbst neu
     }
 }
