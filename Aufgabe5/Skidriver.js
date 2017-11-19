@@ -1,12 +1,19 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:19.11.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 var Aufgabe5;
 (function (Aufgabe5) {
     var Skidriver = (function () {
         function Skidriver(_x, _y) {
-            this.x = _x + 70 * Math.random();
-            this.y = _y + 210 * Math.random();
+            this.x = _x;
+            this.y = _y;
+            this.dx = 3 + Math.random() * 3;
+            this.dy = 2 + Math.random();
+            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         }
         Skidriver.prototype.sayHello = function () {
-            console.log("Hallo");
+            console.log("Hello Skidrivers");
         };
         Skidriver.prototype.update = function () {
             this.move();
@@ -17,8 +24,8 @@ var Aufgabe5;
                 this.x = 0;
                 this.y = 150;
             }
-            this.x += 3; // hier experimentieren um
-            this.y += 2; // andere Bewegungsmuster zu finden
+            this.x += this.dx;
+            this.y += this.dy;
         };
         Skidriver.prototype.draw = function () {
             Aufgabe5.crc2.fillStyle = this.color;
@@ -38,10 +45,6 @@ var Aufgabe5;
             Aufgabe5.crc2.moveTo(this.x + 40, this.y - 30);
             Aufgabe5.crc2.lineTo(this.x + 55, this.y - 10);
             Aufgabe5.crc2.stroke();
-        };
-        Skidriver.prototype.setRandomStyle = function () {
-            this.size = Math.random() * 30 + 10;
-            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         };
         return Skidriver;
     }());

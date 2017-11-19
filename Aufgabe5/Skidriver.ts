@@ -1,17 +1,25 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:19.11.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 namespace Aufgabe5 {
     export class Skidriver {
         x: number;
         y: number;
-        size: number;
+        dx: number;
+        dy: number;
         color: string;
 
         constructor(_x: number, _y: number) {
-            this.x = _x + 70 * Math.random();
-            this.y = _y + 210 * Math.random();
+            this.x = _x;
+            this.y = _y;
+            this.dx = 3 + Math.random() * 3;
+            this.dy = 2 + Math.random();
+            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         }
 
         sayHello(): void {
-            console.log("Hallo");
+            console.log("Hello Skidrivers");
         }
 
         update(): void {
@@ -25,8 +33,8 @@ namespace Aufgabe5 {
                 this.y = 150;
             }
 
-            this.x += 3; // hier experimentieren um
-            this.y += 2; // andere Bewegungsmuster zu finden
+            this.x += this.dx;
+            this.y += this.dy;
         }
 
         draw(): void {
@@ -51,11 +59,6 @@ namespace Aufgabe5 {
             crc2.moveTo(this.x + 40, this.y - 30);
             crc2.lineTo(this.x + 55, this.y - 10);
             crc2.stroke();
-        }
-
-        setRandomStyle(): void {
-            this.size = Math.random() * 30 + 10;
-            this.color = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
         }
     }
 }

@@ -1,19 +1,16 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:04.11.17
+     Datum:19.11.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
+
 namespace Aufgabe5 {
     window.addEventListener("load", draw);
     export let crc2: CanvasRenderingContext2D;
 
-    let skidriver: Skidriver[] = [];
-
-    let snowX: number[] = [];
-    let snowY: number[] = [];
-    let cloudX: number[] = [];
-    let cloudY: number[] = [];
-    let cloudSX: number = 10;
-    let cloudSY: number = 60;
+    let skidriver: Skidriver[] = []; //arrays von Typ Klasse
+    let cloud: Cloud[] = [];
+    let smallCloud: SmallCloud[] = [];
+    let snow: Snow[] = [];
 
     let imgData: ImageData;
 
@@ -124,39 +121,25 @@ namespace Aufgabe5 {
             drawTree(x, y, "#39BF54");
         }
 
-        //Schleifen Schnee/Wolken/Skifahrer
-        for (let i: number = 0; i < 800; i++) {
-            snowX[i] = 0 + Math.random() * 800;
-            snowY[i] = 0 + Math.random() * 600;
+        //Schnee
+        for (let i: number = 0; i < 900; i++) {
+            snow[i] = new Snow(0, 0); //new ruft constructor auf//neue Instanz einer Klasse wird erstellt
         }
+
+        //Wolken groß
         for (let i: number = 0; i < 2; i++) {
-            cloudX[i] = 0 + Math.random() * 800;
-            cloudY[i] = 130;
+            cloud[i] = new Cloud(0 + Math.random() * 800, 130);
         }
 
+        //Wolken klein
+        for (let i: number = 0; i < 2; i++) {
+            smallCloud[i] = new SmallCloud(0 + Math.random() * 800, 60);
+        }
 
-        let s: Skidriver = new Skidriver(0, 150); //Startwert?
-        s.setRandomStyle();
-        s.sayHello();
-
-
+        //Skifahrer
         for (let i: number = 0; i < 3; i++) {
-            let s: Skidriver = new Skidriver(0, 150);
-            s.setRandomStyle();
-     
-            skidriver[i] = s;
+            skidriver[i] = new Skidriver(0, 150);
         }
-
-
-        /* for (let i: number = 0; i < 3; i++) {
-             skidriver[i] = {
-                 x: 0,
-                 y: 150,
-                 dx: Math.random() * 1 + 1.5,
-                 dy: Math.random() * 1 + 1.5,
-                 color: "hsl(" + Math.random() * 360 + ", 100%, 50%)"
-             };
-         }*/
 
         //Hintergrund speichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
@@ -181,99 +164,35 @@ namespace Aufgabe5 {
         crc2.fill();
     }
 
-    //Funktion für Schneeflocken
-    function drawSnow(_x1: number, _y1: number): void {
-
-        crc2.beginPath();
-        crc2.arc(_x1, _y1, 2, 0, 2 * Math.PI);
-        crc2.fillStyle = "#ffffff";
-        crc2.fill();
-    }
-
-
-    //Funktion für Wolken
-    function cloud(_x: number, _y: number): void {
-        crc2.beginPath();
-        crc2.arc(_x, _y, 30, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x + 45, _y, 30, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x + 23, _y - 20, 25, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-    }
-
-    //Funktion für kleine Wolke
-    function cloudSmall(_x: number, _y: number): void {
-        crc2.beginPath();
-        crc2.arc(_x - 35, _y, 25, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x, _y, 25, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-
-        crc2.beginPath();
-        crc2.arc(_x - 17, _y - 21, 20, 0, 2 * Math.PI);
-        crc2.fillStyle = "#99E5D0";
-        crc2.fill();
-    }
-
     //Funktion zum animieren
     function animate(): void {
-//        console.log("Timeout");
+        console.log("Timeout");
         crc2.putImageData(imgData, 0, 0); //Hintergrund restaurieren
 
         //Schnee
-        for (let i: number = 0; i < snowX.length; i++) {
-            if (snowY[i] > 600) {
-                snowY[i] = 0;
-            }
-            snowY[i] += Math.random();
-            drawSnow(snowX[i], snowY[i]);
+        for (let i: number = 0; i < snow.length; i++) {
+            let s: Snow = snow[i]; //an Stelle [i] des Arrays laden und per s.update an die Klasse übergeben
+            s.update(); // Move und Draw aufrufen
         }
 
         //Wolken groß
-        for (let i: number = 0; i < cloudX.length; i++) {
-            if (cloudX[i] > 800) {
-                cloudX[i] = 0;
-            }
-            cloudX[i] += Math.random();
-            cloud(cloudX[i], cloudY[i]);
+        for (let i: number = 0; i < cloud.length; i++) {
+            let s: Cloud = cloud[i];
+            s.update(); // Move und Draw aufrufen
         }
 
         //Wolke klein
-        if (cloudSX > 800) {
-            cloudSX = 0;
+        for (let i: number = 0; i < cloud.length; i++) {
+            let s: SmallCloud = smallCloud[i];
+            s.update(); // Move und Draw aufrufen
         }
 
-        cloudSX += Math.random();
-        cloudSmall(cloudSX, cloudSY);
-
-//        skidriver.update();
-
+        //Skifahrer
         for (let i: number = 0; i < skidriver.length; i++) {
             let s: Skidriver = skidriver[i];
             s.update(); // Move und Draw aufrufen
         }
 
-
-        /*    for (let i: number = 0; i < skidriver.length; i++) {
-                drawAndMoveSkidriver(skidriver[i]);
-    
-                if (skidriver[i].x > 800) {
-                    skidriver[i].x = 0;
-                    skidriver[i].y = 150;
-                }
-            }*/
         window.setTimeout(animate, 20); //Alle 20ms startet Funktion sich selbst neu
     }
 }

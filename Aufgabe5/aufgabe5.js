@@ -1,17 +1,14 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:04.11.17
+     Datum:19.11.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 var Aufgabe5;
 (function (Aufgabe5) {
     window.addEventListener("load", draw);
-    var skidriver = [];
-    var snowX = [];
-    var snowY = [];
-    var cloudX = [];
-    var cloudY = [];
-    var cloudSX = 10;
-    var cloudSY = 60;
+    var skidriver = []; //arrays von Typ Klasse
+    var cloud = [];
+    var smallCloud = [];
+    var snow = [];
     var imgData;
     function draw() {
         var canvas = document.getElementsByTagName("canvas")[0];
@@ -102,32 +99,22 @@ var Aufgabe5;
             var y = 400 + Math.random() * 180;
             drawTree(x, y, "#39BF54");
         }
-        //Schleifen Schnee/Wolken/Skifahrer
-        for (var i = 0; i < 800; i++) {
-            snowX[i] = 0 + Math.random() * 800;
-            snowY[i] = 0 + Math.random() * 600;
+        //Schnee
+        for (var i = 0; i < 900; i++) {
+            snow[i] = new Aufgabe5.Snow(0, 0); //new ruft constructor auf//neue Instanz einer Klasse wird erstellt
         }
+        //Wolken gro�
         for (var i = 0; i < 2; i++) {
-            cloudX[i] = 0 + Math.random() * 800;
-            cloudY[i] = 130;
+            cloud[i] = new Aufgabe5.Cloud(0 + Math.random() * 800, 130);
         }
-        var s = new Aufgabe5.Skidriver(0, 150); //Startwert?
-        s.setRandomStyle();
-        s.sayHello();
+        //Wolken klein
+        for (var i = 0; i < 2; i++) {
+            smallCloud[i] = new Aufgabe5.SmallCloud(0 + Math.random() * 800, 60);
+        }
+        //Skifahrer
         for (var i = 0; i < 3; i++) {
-            var s_1 = new Aufgabe5.Skidriver(0, 150);
-            s_1.setRandomStyle();
-            skidriver[i] = s_1;
+            skidriver[i] = new Aufgabe5.Skidriver(0, 150);
         }
-        /* for (let i: number = 0; i < 3; i++) {
-             skidriver[i] = {
-                 x: 0,
-                 y: 150,
-                 dx: Math.random() * 1 + 1.5,
-                 dy: Math.random() * 1 + 1.5,
-                 color: "hsl(" + Math.random() * 360 + ", 100%, 50%)"
-             };
-         }*/
         //Hintergrund speichern
         imgData = Aufgabe5.crc2.getImageData(0, 0, canvas.width, canvas.height);
         //Funktionsaufruf
@@ -146,82 +133,30 @@ var Aufgabe5;
         Aufgabe5.crc2.fillStyle = _color;
         Aufgabe5.crc2.fill();
     }
-    //Funktion f�r Schneeflocken
-    function drawSnow(_x1, _y1) {
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x1, _y1, 2, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#ffffff";
-        Aufgabe5.crc2.fill();
-    }
-    //Funktion f�r Wolken
-    function cloud(_x, _y) {
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x, _y, 30, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x + 45, _y, 30, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x + 23, _y - 20, 25, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-    }
-    //Funktion f�r kleine Wolke
-    function cloudSmall(_x, _y) {
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x - 35, _y, 25, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x, _y, 25, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-        Aufgabe5.crc2.beginPath();
-        Aufgabe5.crc2.arc(_x - 17, _y - 21, 20, 0, 2 * Math.PI);
-        Aufgabe5.crc2.fillStyle = "#99E5D0";
-        Aufgabe5.crc2.fill();
-    }
     //Funktion zum animieren
     function animate() {
-        //        console.log("Timeout");
+        console.log("Timeout");
         Aufgabe5.crc2.putImageData(imgData, 0, 0); //Hintergrund restaurieren
         //Schnee
-        for (var i = 0; i < snowX.length; i++) {
-            if (snowY[i] > 600) {
-                snowY[i] = 0;
-            }
-            snowY[i] += Math.random();
-            drawSnow(snowX[i], snowY[i]);
+        for (var i = 0; i < snow.length; i++) {
+            var s = snow[i]; //an Stelle [i] des Arrays laden und per s.update an die Klasse �bergeben
+            s.update(); // Move und Draw aufrufen
         }
         //Wolken gro�
-        for (var i = 0; i < cloudX.length; i++) {
-            if (cloudX[i] > 800) {
-                cloudX[i] = 0;
-            }
-            cloudX[i] += Math.random();
-            cloud(cloudX[i], cloudY[i]);
+        for (var i = 0; i < cloud.length; i++) {
+            var s = cloud[i];
+            s.update(); // Move und Draw aufrufen
         }
         //Wolke klein
-        if (cloudSX > 800) {
-            cloudSX = 0;
+        for (var i = 0; i < cloud.length; i++) {
+            var s = smallCloud[i];
+            s.update(); // Move und Draw aufrufen
         }
-        cloudSX += Math.random();
-        cloudSmall(cloudSX, cloudSY);
-        //        skidriver.update();
+        //Skifahrer
         for (var i = 0; i < skidriver.length; i++) {
             var s = skidriver[i];
             s.update(); // Move und Draw aufrufen
         }
-        /*    for (let i: number = 0; i < skidriver.length; i++) {
-                drawAndMoveSkidriver(skidriver[i]);
-    
-                if (skidriver[i].x > 800) {
-                    skidriver[i].x = 0;
-                    skidriver[i].y = 150;
-                }
-            }*/
         window.setTimeout(animate, 20); //Alle 20ms startet Funktion sich selbst neu
     }
 })(Aufgabe5 || (Aufgabe5 = {}));
