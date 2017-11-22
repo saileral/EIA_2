@@ -1,0 +1,18 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:04.11.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
+/* Mobile */
+
+canvas{
+		width: 100%;
+}
+
+/* Desktop */
+
+@media screen and (min-width: 1024px) {
+	canvas{
+		width: 800px;
+		height: 600px;
+	}
+}
