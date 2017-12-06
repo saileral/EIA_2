@@ -39,9 +39,10 @@ namespace StudiVZ {
         //Student Objekt vom Typ StudentData erstellen
         let stringToSplit: string[] = _input.split(",", 6);   //string wird in 6 Teile gesplitted
 
-        if (parseInt(stringToSplit[0]) == NaN) {
+        if (Number.isNaN(parseInt(stringToSplit[0]))) {
             return "'Matrikelnummer' muss eine Zahl sein";
         }
+        
         else if (stringToSplit[1] == "") {
             return "'Name' darf nicht leer sein";
         }
