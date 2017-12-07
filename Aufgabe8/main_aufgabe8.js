@@ -25,6 +25,8 @@ var Aufgabe8;
         div.style.width = _width.toString();
         div.style.height = _height.toString();
         div.style.backgroundColor = _color;
+        div.style.display = "inline";
+        div.style.position = "absolute";
         document.body.appendChild(div); //html ELement in body hinzuf�gen
     }
 })(Aufgabe8 || (Aufgabe8 = {}));
