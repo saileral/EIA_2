@@ -20,10 +20,10 @@ var Aufgabe8;
     }
     function drawDiv(_x, _y, _color, _height, _width) {
         var div = document.createElement("div"); //div-Element wird erstellen
-        div.style.marginLeft = _x.toString(); //�bergabewert in String umwandeln, da h.style keine Zahlen entgegen nehmen kann
-        div.style.marginTop = _y.toString(); //siehe oben
-        div.style.width = _width.toString();
-        div.style.height = _height.toString();
+        div.style.marginLeft = _x + "px";
+        div.style.marginTop = _y + "px";
+        div.style.width = _width + "px";
+        div.style.height = _height + "px";
         div.style.backgroundColor = _color;
         div.style.display = "inline";
         div.style.position = "absolute";

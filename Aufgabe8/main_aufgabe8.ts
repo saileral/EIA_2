@@ -22,10 +22,10 @@ namespace Aufgabe8 {
     function drawDiv(_x: number, _y: number, _color: string, _height: number, _width: number): void {
 
         let div: HTMLDivElement = document.createElement("div"); //div-Element wird erstellen
-        div.style.marginLeft = _x.toString(); //Übergabewert in String umwandeln, da h.style keine Zahlen entgegen nehmen kann
-        div.style.marginTop = _y.toString(); //siehe oben
-        div.style.width = _width.toString();
-        div.style.height = _height.toString();
+        div.style.marginLeft = _x + "px";
+        div.style.marginTop = _y + "px"; 
+        div.style.width = _width + "px";
+        div.style.height = _height + "px";
         div.style.backgroundColor = _color;
         div.style.display = "inline";
         div.style.position = "absolute";
