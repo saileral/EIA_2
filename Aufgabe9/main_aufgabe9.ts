@@ -88,6 +88,9 @@ namespace Aufgabe9 {
 
     function handleMouseDownDelete(_event: MouseEvent, _keyEvent: KeyboardEvent): void {
         console.log("Funktion wird aufgerufen");
+        if (_keyEvent.altKey == false)
+            return;
+        
         if (_keyEvent.altKey == true) {
             let h: HTMLDivElement = <HTMLDivElement>_event.target;
             document.body.removeChild(h);
