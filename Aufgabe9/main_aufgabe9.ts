@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:16.12.17
+     Datum:17.12.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 
 namespace Aufgabe9 {
@@ -10,7 +10,6 @@ namespace Aufgabe9 {
     let aBisZ: string[];
     let tempABisZ: string = "";
 
-
     function init(): void {
         //      console.log("Hallo");
         aBisZ = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -19,7 +18,7 @@ namespace Aufgabe9 {
             s1.style.width = "40px";
             s1.style.margin = "2px";
             s1.style.height = "40px";
-            s1.style.backgroundColor = "#2FEEC5";
+            s1.style.backgroundColor = "#A4A4A4";
             s1.style.color = "white";
             s1.style.fontSize = "30px";
             s1.style.display = "inline";
@@ -31,7 +30,7 @@ namespace Aufgabe9 {
         }
 
         let s2: HTMLDivElement = document.createElement("div");
-        s2.style.backgroundColor = "#2FEEC5";
+        s2.style.backgroundColor = "#A4A4A4";
         s2.style.width = "1150px";
         s2.style.height = "500px";
         s2.style.marginTop = "10px";
@@ -45,7 +44,7 @@ namespace Aufgabe9 {
         if (tempABisZ == "") {
             let h: HTMLDivElement = <HTMLDivElement>_event.target;
             //          console.log(h.innerText);
-            h.style.color = "#2FEEC5";
+            h.style.color = "#A4A4A4";
             h.style.backgroundColor = "white";
             tempABisZ = h.id.toUpperCase();
             //          console.log(tempABisZ);
@@ -57,11 +56,11 @@ namespace Aufgabe9 {
             return;
 
         text = document.createElement("div");
-        text.className = "DOM-Pointer";
         text.innerText = tempABisZ;
         text.style.position = "absolute";
         text.style.color = "white";
         text.style.fontSize = "30px";
+        text.style.fontFamily = "'Shadows Into Light', cursive";
         text.style.left = _event.pageX.toString();
         text.style.top = _event.pageY.toString();
         text.addEventListener("mousedown", handleMouseDownDelete);
@@ -69,36 +68,29 @@ namespace Aufgabe9 {
 
         let clickedDiv: HTMLDivElement = <HTMLDivElement>document.getElementById(tempABisZ.toLowerCase());
         clickedDiv.style.color = "white";
-        clickedDiv.style.backgroundColor = "#2FEEC5";
+        clickedDiv.style.backgroundColor = "#A4A4A4";
         tempABisZ = "";
-
     }
 
     function handleKeydown(_event: KeyboardEvent): void {
-//        console.log(_event);
+        //        console.log(_event);
         if (aBisZ.indexOf(_event.key.toUpperCase()) != -1) {
             let h: HTMLDivElement = <HTMLDivElement>document.getElementById(_event.key);
             //          console.log(h.innerText);
-            h.style.color = "#2FEEC5";
+            h.style.color = "#A4A4A4";
             h.style.backgroundColor = "white";
             tempABisZ = _event.key.toUpperCase();
         }
     }
 
-
-    function handleMouseDownDelete(_event: MouseEvent, _keyEvent: KeyboardEvent): void {
-        console.log("Funktion wird aufgerufen");
-        if (_keyEvent.altKey == false)
+    function handleMouseDownDelete(_event: MouseEvent): void {
+        //        console.log("Funktion wird aufgerufen");
+        if (_event.altKey == false)
             return;
-        
-        if (_keyEvent.altKey == true) {
+
+        if (_event.altKey == true) {
             let h: HTMLDivElement = <HTMLDivElement>_event.target;
             document.body.removeChild(h);
         }
-
-
-
-
-
     }
 }

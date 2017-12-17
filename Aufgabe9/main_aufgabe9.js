@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:06.12.17
+     Datum:17.12.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 var Aufgabe9;
 (function (Aufgabe9) {
@@ -17,7 +17,7 @@ var Aufgabe9;
             s1.style.width = "40px";
             s1.style.margin = "2px";
             s1.style.height = "40px";
-            s1.style.backgroundColor = "#2FEEC5";
+            s1.style.backgroundColor = "#A4A4A4";
             s1.style.color = "white";
             s1.style.fontSize = "30px";
             s1.style.display = "inline";
@@ -28,7 +28,7 @@ var Aufgabe9;
             document.body.appendChild(s1);
         }
         var s2 = document.createElement("div");
-        s2.style.backgroundColor = "#2FEEC5";
+        s2.style.backgroundColor = "#A4A4A4";
         s2.style.width = "1150px";
         s2.style.height = "500px";
         s2.style.marginTop = "10px";
@@ -40,7 +40,7 @@ var Aufgabe9;
         if (tempABisZ == "") {
             var h = _event.target;
             //          console.log(h.innerText);
-            h.style.color = "#2FEEC5";
+            h.style.color = "#A4A4A4";
             h.style.backgroundColor = "white";
             tempABisZ = h.id.toUpperCase();
         }
@@ -49,31 +49,38 @@ var Aufgabe9;
         if (tempABisZ == "")
             return;
         text = document.createElement("div");
-        text.className = "DOM-Pointer";
         text.innerText = tempABisZ;
         text.style.position = "absolute";
         text.style.color = "white";
         text.style.fontSize = "30px";
+        text.style.fontFamily = "'Shadows Into Light', cursive";
         text.style.left = _event.pageX.toString();
         text.style.top = _event.pageY.toString();
         text.addEventListener("mousedown", handleMouseDownDelete);
         document.body.appendChild(text);
         var clickedDiv = document.getElementById(tempABisZ.toLowerCase());
         clickedDiv.style.color = "white";
-        clickedDiv.style.backgroundColor = "#2FEEC5";
+        clickedDiv.style.backgroundColor = "#A4A4A4";
         tempABisZ = "";
     }
     function handleKeydown(_event) {
-        console.log(_event);
+        //        console.log(_event);
         if (aBisZ.indexOf(_event.key.toUpperCase()) != -1) {
             var h = document.getElementById(_event.key);
             //          console.log(h.innerText);
-            h.style.color = "#2FEEC5";
+            h.style.color = "#A4A4A4";
             h.style.backgroundColor = "white";
             tempABisZ = _event.key.toUpperCase();
         }
     }
     function handleMouseDownDelete(_event) {
+        //        console.log("Funktion wird aufgerufen");
+        if (_event.altKey == false)
+            return;
+        if (_event.altKey == true) {
+            var h = _event.target;
+            document.body.removeChild(h);
+        }
     }
 })(Aufgabe9 || (Aufgabe9 = {}));
 //# sourceMappingURL=main_aufgabe9.js.map
