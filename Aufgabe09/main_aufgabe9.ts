@@ -73,7 +73,7 @@ namespace Aufgabe9 {
     }
 
     function handleKeydown(_event: KeyboardEvent): void {
-        //        console.log(_event);
+        console.log(_event);
         if (aBisZ.indexOf(_event.key.toUpperCase()) != -1) {
             let h: HTMLDivElement = <HTMLDivElement>document.getElementById(_event.key);
             //          console.log(h.innerText);

@@ -64,7 +64,7 @@ var Aufgabe9;
         tempABisZ = "";
     }
     function handleKeydown(_event) {
-        //        console.log(_event);
+        console.log(_event);
         if (aBisZ.indexOf(_event.key.toUpperCase()) != -1) {
             var h = document.getElementById(_event.key);
             //          console.log(h.innerText);
