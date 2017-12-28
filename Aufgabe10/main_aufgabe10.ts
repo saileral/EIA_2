@@ -158,12 +158,16 @@ namespace Aufgabe10 {
     }
 
     function warenkorb(_event: Event): void {
-        //  console.log(_event.target.options.selectedIndex);
-        let target: HTMLInputElement = <HTMLInputElement>_event.target;
+        console.log(_event.target);
+
+        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         console.log("Changed " + target.name + " to " + target.value);
+        console.log(target.options.selectedIndex);
+        console.log(target.options.length);
+       
+        
+        
         let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
-
-
 
     }
 
@@ -178,20 +182,4 @@ namespace Aufgabe10 {
             document.body.appendChild(feedback);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

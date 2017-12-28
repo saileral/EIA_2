@@ -141,9 +141,11 @@ var Aufgabe10;
         button.appendChild(submit);
     }
     function warenkorb(_event) {
+        console.log(_event.target);
         //  console.log(_event.target.options.selectedIndex);
         var target = _event.target;
         console.log("Changed " + target.name + " to " + target.value);
+        //  console.log(target.options.);
         var zsmfassung = document.getElementById("zusammenfassung");
     }
     function handleMouseDown(_event) {
