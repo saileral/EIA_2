@@ -14,6 +14,7 @@ var Aufgabe10;
         var baumart = document.getElementById("baumart");
         var selectBox = document.createElement("select");
         selectBox.name = "SelectBaumart";
+        selectBox.id = "select";
         baumart.appendChild(selectBox);
         for (var i = 0; i < Aufgabe10.baumarten.length; i++) {
             var opt = document.createElement("option");
@@ -141,11 +142,18 @@ var Aufgabe10;
         button.appendChild(submit);
     }
     function warenkorb(_event) {
-        console.log(_event.target);
-        //  console.log(_event.target.options.selectedIndex);
+        // console.log(_event.target);
         var target = _event.target;
-        console.log("Changed " + target.name + " to " + target.value);
-        //  console.log(target.options.);
+        // console.log("Changed " + target.name + " to " + target.value);
+        //console.log(target.options.selectedIndex);
+        //console.log(target.options.length);
+        if (target.id == "select") {
+            var selectElement = _event.target;
+            var index = selectElement.selectedIndex;
+            console.log("Index: " + index);
+            console.log("Options: " + selectElement.options);
+            console.log("Selected: " + selectElement.options[index]);
+        }
         var zsmfassung = document.getElementById("zusammenfassung");
     }
     function handleMouseDown(_event) {

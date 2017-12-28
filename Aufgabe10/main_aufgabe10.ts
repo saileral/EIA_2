@@ -14,6 +14,7 @@ namespace Aufgabe10 {
         let baumart: HTMLDivElement = <HTMLDivElement>document.getElementById("baumart");
         let selectBox: HTMLSelectElement = document.createElement("select");
         selectBox.name = "SelectBaumart";
+        selectBox.id = "select";
         baumart.appendChild(selectBox);
         for (let i: number = 0; i < baumarten.length; i++) {
             var opt: HTMLElement = document.createElement("option");
@@ -158,13 +159,20 @@ namespace Aufgabe10 {
     }
 
     function warenkorb(_event: Event): void {
-        console.log(_event.target);
+       // console.log(_event.target);
 
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-        console.log("Changed " + target.name + " to " + target.value);
-        console.log(target.options.selectedIndex);
-        console.log(target.options.length);
+       // console.log("Changed " + target.name + " to " + target.value);
+        //console.log(target.options.selectedIndex);
+        //console.log(target.options.length);
        
+        if (target.id == "select") {
+            let selectElement: HTMLSelectElement = <HTMLSelectElement>_event.target;
+            let index: number = selectElement.selectedIndex;
+            console.log("Index: " + index);
+            console.log("Options: " + selectElement.options);
+            console.log("Selected: " + selectElement.options[index]);
+        }
         
         
         let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
