@@ -8,13 +8,15 @@ namespace Aufgabe10 {
     var plz: HTMLInputElement;
     var mail: HTMLInputElement;
     var zusatz: HTMLTextAreaElement;
+    var label: HTMLLabelElement;
+    let checkedId: string[] = [];
 
     function createElements(): void {
         //Baumart:
         let baumart: HTMLDivElement = <HTMLDivElement>document.getElementById("baumart");
         let selectBox: HTMLSelectElement = document.createElement("select");
         selectBox.name = "SelectBaumart";
-        selectBox.id = "select";
+        selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (let i: number = 0; i < baumarten.length; i++) {
             var opt: HTMLElement = document.createElement("option");
@@ -34,7 +36,8 @@ namespace Aufgabe10 {
             radioB.id = "radio" + i;
             halterung.appendChild(radioB);
 
-            var label: HTMLLabelElement = document.createElement("label");
+            label = document.createElement("label");
+            label.id = "label" + i;
             label.htmlFor = radioB.id;
             label.innerText = halterungen[i].art;
             halterung.appendChild(label);
@@ -44,6 +47,7 @@ namespace Aufgabe10 {
         let beleuchtung: HTMLDivElement = <HTMLDivElement>document.getElementById("beleuchtung");
         let selectBox2: HTMLSelectElement = document.createElement("select");
         selectBox2.name = "SelectBeleuchtung";
+        selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (let i: number = 0; i < beleuchtungen.length; i++) {
             var opt2: HTMLElement = document.createElement("option");
@@ -58,11 +62,12 @@ namespace Aufgabe10 {
             var checkB: HTMLInputElement = document.createElement("input");
             checkB.type = "checkbox";
             checkB.name = "CheckboxSchmuckartikel";
-            checkB.value = "check" + i;
-            checkB.id = "check" + i;
+            checkB.value = "check";
+            checkB.id = "check";
             schmuckartikel.appendChild(checkB);
 
             var label2: HTMLLabelElement = document.createElement("label");
+            label2.id = "label2." + i;
             label2.htmlFor = checkB.id;
             label2.innerText = schmuck[i].art;
             schmuckartikel.appendChild(label2);
@@ -139,10 +144,11 @@ namespace Aufgabe10 {
             radioB2.type = "radio";
             radioB2.name = "radioGroupLieferoptionen";
             radioB2.value = "radio2." + i;
-            radioB2.id = "radio2" + i;
+            radioB2.id = "radio2." + i;
             lieferopt.appendChild(radioB2);
 
             var label3: HTMLLabelElement = document.createElement("label");
+            label3.id = "label3." + i;
             label3.htmlFor = radioB2.id;
             label3.innerText = lieferOptionen[i].art;
             lieferopt.appendChild(label3);
@@ -159,25 +165,107 @@ namespace Aufgabe10 {
     }
 
     function warenkorb(_event: Event): void {
-       // console.log(_event.target);
-
+        console.log(_event.target);
         let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-       // console.log("Changed " + target.name + " to " + target.value);
-        //console.log(target.options.selectedIndex);
-        //console.log(target.options.length);
-       
-        if (target.id == "select") {
+        // console.log("Changed " + target.name + " to " + target.value);
+        let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
+        if (target.id == "selectBaumart") {
             let selectElement: HTMLSelectElement = <HTMLSelectElement>_event.target;
             let index: number = selectElement.selectedIndex;
-            console.log("Index: " + index);
-            console.log("Options: " + selectElement.options);
-            console.log("Selected: " + selectElement.options[index]);
+            //console.log("Index: " + index);
+            //console.log("Options: " + selectElement.options);
+            //console.log("Selected: " + selectElement.options[index]);
+            //console.log(selectElement.options[index].textContent);
+            var create: HTMLParagraphElement = document.createElement("p");
+            create.className = "warenkorbContent";
+            create.innerText = selectElement.options[index].textContent + baumarten[index].preis;
+            zsmfassung.appendChild(create);
         }
-        
-        
-        let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
+        if (target.name == "radioGroupHalterung") {
+            let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
+            if (inputElement.checked && inputElement.id == "radio0") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label0");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + halterungen[0].preis;
+                zsmfassung.appendChild(create);
+            }
+            if (inputElement.checked && inputElement.id == "radio1") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label1");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + halterungen[1].preis;
+                zsmfassung.appendChild(create);
+            }
+            if (inputElement.checked && inputElement.id == "radio2") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label2");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + halterungen[2].preis;
+                zsmfassung.appendChild(create);
+            }
+            if (inputElement.checked && inputElement.id == "radio3") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + halterungen[3].preis;
+                zsmfassung.appendChild(create);
+            }
+        }
+
+        if (target.id == "selectBeleuchtung") {
+            let selectElement: HTMLSelectElement = <HTMLSelectElement>_event.target;
+            let index: number = selectElement.selectedIndex;
+            var create: HTMLParagraphElement = document.createElement("p");
+            create.className = "warenkorbContent";
+            create.innerText = selectElement.options[index].textContent + beleuchtungen[index].preis;
+            zsmfassung.appendChild(create);
+        }
+        if (target.name == "radioGroupLieferoptionen") {
+            let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
+            console.log(inputElement.id);
+            if (inputElement.checked && inputElement.id == "radio2.0") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3.0");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + lieferOptionen[0].preis;
+                zsmfassung.appendChild(create);
+            }
+            if (inputElement.checked && inputElement.id == "radio2.1") {
+                let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3.1");
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = labelId.innerText + lieferOptionen[1].preis;
+                zsmfassung.appendChild(create);
+            }
+        }
+        if (target.id == "check") {
+            let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
+            for (let i: number = 0; i < schmuck.length; i++) {
+                if (inputElement.checked == true) {
+                    let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label2." + i);
+                    let text: string = labelId.innerText;
+                    console.log(labelId.innerText);
+                    checkedId.push(text);
+                    console.log("array:" + checkedId);
+                    console.log(checkedId.length);
+                    
+                }
+            }
+            for (let i: number = 0; i < checkedId.length; i++) {
+            var create: HTMLParagraphElement = document.createElement("p");
+            create.className = "warenkorbContent";
+            create.innerText = "hi";
+            zsmfassung.appendChild(create);
+                }
+
+        }
+
+
+
 
     }
+
 
     function handleMouseDown(_event: MouseEvent): void {
         let feedback: HTMLDivElement = document.createElement("div");
