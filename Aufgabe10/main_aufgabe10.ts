@@ -19,8 +19,6 @@ namespace Aufgabe10 {
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (let i: number = 0; i < posten.length; i++) {
-            if (posten[i].art != "Baumart")
-                return;
             if (posten[i].art == "Baumart") {
                 var opt: HTMLElement = document.createElement("option");
                 opt.innerText = posten[i].name;
@@ -33,9 +31,6 @@ namespace Aufgabe10 {
         //Halterung:
         let halterung: HTMLDivElement = <HTMLDivElement>document.getElementById("halterung");
         for (let i: number = 0; i < posten.length; i++) {
-            console.log("vkj");
-            if (posten[i].art != "Halter")
-                return;
             if (posten[i].art == "Halter") {
                 var radioB: HTMLInputElement = document.createElement("input");
                 radioB.type = "radio";
@@ -59,8 +54,6 @@ namespace Aufgabe10 {
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (let i: number = 0; i < posten.length; i++) {
-            if (posten[i].art != "Beleuchtung")
-                return;
             if (posten[i].art == "Beleuchtung") {
                 var opt2: HTMLElement = document.createElement("option");
                 opt2.innerText = posten[i].name;
@@ -72,8 +65,6 @@ namespace Aufgabe10 {
         //Schmuckartikel:
         let schmuckartikel: HTMLDivElement = <HTMLDivElement>document.getElementById("schmuckartikel");
         for (let i: number = 0; i < posten.length; i++) {
-            if (posten[i].art != "Schmuck")
-                return;
             if (posten[i].art == "Schmuck") {
                 var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
@@ -157,8 +148,6 @@ namespace Aufgabe10 {
         //Lieferoptionen:
         let lieferopt: HTMLDivElement = <HTMLDivElement>document.getElementById("lieferoptionen");
         for (let i: number = 0; i < posten.length; i++) {
-            if (posten[i].art != "Lieferung")
-                return;
             if (posten[i].art == "Lieferung") {
                 var radioB2: HTMLInputElement = document.createElement("input");
                 radioB2.type = "radio";

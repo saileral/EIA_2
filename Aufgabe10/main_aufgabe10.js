@@ -19,8 +19,6 @@ var Aufgabe10;
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
-            if (Aufgabe10.posten[i].art != "Baumart")
-                return;
             if (Aufgabe10.posten[i].art == "Baumart") {
                 var opt = document.createElement("option");
                 opt.innerText = Aufgabe10.posten[i].name;
@@ -32,9 +30,6 @@ var Aufgabe10;
         //Halterung:
         var halterung = document.getElementById("halterung");
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
-            console.log("vkj");
-            if (Aufgabe10.posten[i].art != "Halter")
-                return;
             if (Aufgabe10.posten[i].art == "Halter") {
                 var radioB = document.createElement("input");
                 radioB.type = "radio";
@@ -56,8 +51,6 @@ var Aufgabe10;
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
-            if (Aufgabe10.posten[i].art != "Beleuchtung")
-                return;
             if (Aufgabe10.posten[i].art == "Beleuchtung") {
                 var opt2 = document.createElement("option");
                 opt2.innerText = Aufgabe10.posten[i].name;
@@ -68,8 +61,6 @@ var Aufgabe10;
         //Schmuckartikel:
         var schmuckartikel = document.getElementById("schmuckartikel");
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
-            if (Aufgabe10.posten[i].art != "Schmuck")
-                return;
             if (Aufgabe10.posten[i].art == "Schmuck") {
                 var checkB = document.createElement("input");
                 checkB.type = "checkbox";
@@ -143,8 +134,6 @@ var Aufgabe10;
         //Lieferoptionen:
         var lieferopt = document.getElementById("lieferoptionen");
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
-            if (Aufgabe10.posten[i].art != "Lieferung")
-                return;
             if (Aufgabe10.posten[i].art == "Lieferung") {
                 var radioB2 = document.createElement("input");
                 radioB2.type = "radio";
