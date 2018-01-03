@@ -18,7 +18,8 @@ namespace Aufgabe10 {
         selectBox.name = "SelectBaumart";
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
-        for (let i: number = 0; i < baumarten.length; i++) {
+        for (let i: number = 0; i < posten.length; i++) {
+            if (posten. != "Baumart")
             var opt: HTMLElement = document.createElement("option");
             opt.innerText = baumarten[i].art;
             opt.id = "option" + i;
@@ -255,7 +256,7 @@ namespace Aufgabe10 {
             for (let i: number = 0; i < checkedId.length; i++) {
             var create: HTMLParagraphElement = document.createElement("p");
             create.className = "warenkorbContent";
-            create.innerText = "hi";
+            create.innerText = checkedId[i];
             zsmfassung.appendChild(create);
                 }
 

@@ -236,7 +236,7 @@ var Aufgabe10;
             for (var i = 0; i < checkedId.length; i++) {
                 var create = document.createElement("p");
                 create.className = "warenkorbContent";
-                create.innerText = "hi";
+                create.innerText = checkedId[i];
                 zsmfassung.appendChild(create);
             }
         }
