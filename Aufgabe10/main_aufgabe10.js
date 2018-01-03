@@ -65,7 +65,7 @@ var Aufgabe10;
                 checkB.type = "checkbox";
                 checkB.name = "CheckboxSchmuckartikel";
                 checkB.value = "check";
-                checkB.id = "check";
+                checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
                 var label2 = document.createElement("label");
                 label2.id = "label2." + i;
@@ -158,6 +158,12 @@ var Aufgabe10;
     }
     function warenkorb(_event) {
         console.log(_event.target);
+        var zsmfassung = document.getElementById("zusammenfassung");
+        var create = document.createElement("p");
+        zsmfassung.appendChild(create);
+        var radiogroup;
+        radiogroup = (document.querySelector("input[name=radioGroupHalterung]:checked"));
+        console.log(radiogroup.value);
         /*  let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
           // console.log("Changed " + target.name + " to " + target.value);
           let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
