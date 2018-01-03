@@ -19,29 +19,37 @@ namespace Aufgabe10 {
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (let i: number = 0; i < posten.length; i++) {
-            if (posten. != "Baumart")
-            var opt: HTMLElement = document.createElement("option");
-            opt.innerText = baumarten[i].art;
-            opt.id = "option" + i;
-            // opt.value = nicht möglich "keine eigenschaft von HTML Element"
-            selectBox.appendChild(opt);
+            if (posten[i].art != "Baumart")
+                return;
+            if (posten[i].art == "Baumart") {
+                var opt: HTMLElement = document.createElement("option");
+                opt.innerText = posten[i].name;
+                opt.id = "option" + i;
+                // opt.value = nicht möglich "keine eigenschaft von HTML Element"
+                selectBox.appendChild(opt);
+            }
         }
 
         //Halterung:
         let halterung: HTMLDivElement = <HTMLDivElement>document.getElementById("halterung");
-        for (let i: number = 0; i < halterungen.length; i++) {
-            var radioB: HTMLInputElement = document.createElement("input");
-            radioB.type = "radio";
-            radioB.name = "radioGroupHalterung";
-            radioB.value = "radio" + i;
-            radioB.id = "radio" + i;
-            halterung.appendChild(radioB);
+        for (let i: number = 0; i < posten.length; i++) {
+            console.log("vkj");
+            if (posten[i].art != "Halter")
+                return;
+            if (posten[i].art == "Halter") {
+                var radioB: HTMLInputElement = document.createElement("input");
+                radioB.type = "radio";
+                radioB.name = "radioGroupHalterung";
+                radioB.value = "radio" + i;
+                radioB.id = "radio" + i;
+                halterung.appendChild(radioB);
 
-            label = document.createElement("label");
-            label.id = "label" + i;
-            label.htmlFor = radioB.id;
-            label.innerText = halterungen[i].art;
-            halterung.appendChild(label);
+                label = document.createElement("label");
+                label.id = "label" + i;
+                label.htmlFor = radioB.id;
+                label.innerText = posten[i].name;
+                halterung.appendChild(label);
+            }
         }
 
         //Beleuchtung:
@@ -50,38 +58,46 @@ namespace Aufgabe10 {
         selectBox2.name = "SelectBeleuchtung";
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
-        for (let i: number = 0; i < beleuchtungen.length; i++) {
-            var opt2: HTMLElement = document.createElement("option");
-            opt2.innerText = beleuchtungen[i].art;
-            opt2.id = "option2." + i;
-            selectBox2.appendChild(opt2);
+        for (let i: number = 0; i < posten.length; i++) {
+            if (posten[i].art != "Beleuchtung")
+                return;
+            if (posten[i].art == "Beleuchtung") {
+                var opt2: HTMLElement = document.createElement("option");
+                opt2.innerText = posten[i].name;
+                opt2.id = "option2." + i;
+                selectBox2.appendChild(opt2);
+            }
         }
 
         //Schmuckartikel:
         let schmuckartikel: HTMLDivElement = <HTMLDivElement>document.getElementById("schmuckartikel");
-        for (let i: number = 0; i < schmuck.length; i++) {
-            var checkB: HTMLInputElement = document.createElement("input");
-            checkB.type = "checkbox";
-            checkB.name = "CheckboxSchmuckartikel";
-            checkB.value = "check";
-            checkB.id = "check";
-            schmuckartikel.appendChild(checkB);
+        for (let i: number = 0; i < posten.length; i++) {
+            if (posten[i].art != "Schmuck")
+                return;
+            if (posten[i].art == "Schmuck") {
+                var checkB: HTMLInputElement = document.createElement("input");
+                checkB.type = "checkbox";
+                checkB.name = "CheckboxSchmuckartikel";
+                checkB.value = "check";
+                checkB.id = "check";
+                schmuckartikel.appendChild(checkB);
 
-            var label2: HTMLLabelElement = document.createElement("label");
-            label2.id = "label2." + i;
-            label2.htmlFor = checkB.id;
-            label2.innerText = schmuck[i].art;
-            schmuckartikel.appendChild(label2);
+                var label2: HTMLLabelElement = document.createElement("label");
+                label2.id = "label2." + i;
+                label2.htmlFor = checkB.id;
+                label2.innerText = posten[i].name;
+                schmuckartikel.appendChild(label2);
 
-            let stepper: HTMLInputElement = document.createElement("input");
-            stepper.type = "number";
-            stepper.name = "StepperSchmuckartikel" + i;
-            stepper.value = "0";
-            stepper.id = "stepper" + i;
-            stepper.min = "0";
-            stepper.max = "15";
-            stepper.step = "1";
-            schmuckartikel.appendChild(stepper);
+                let stepper: HTMLInputElement = document.createElement("input");
+                stepper.type = "number";
+                stepper.name = "StepperSchmuckartikel" + i;
+                stepper.value = "0";
+                stepper.id = "stepper" + i;
+                stepper.min = "0";
+                stepper.max = "15";
+                stepper.step = "1";
+                schmuckartikel.appendChild(stepper);
+            }
         }
 
         //Deine Daten:
@@ -140,19 +156,23 @@ namespace Aufgabe10 {
 
         //Lieferoptionen:
         let lieferopt: HTMLDivElement = <HTMLDivElement>document.getElementById("lieferoptionen");
-        for (let i: number = 0; i < lieferOptionen.length; i++) {
-            var radioB2: HTMLInputElement = document.createElement("input");
-            radioB2.type = "radio";
-            radioB2.name = "radioGroupLieferoptionen";
-            radioB2.value = "radio2." + i;
-            radioB2.id = "radio2." + i;
-            lieferopt.appendChild(radioB2);
+        for (let i: number = 0; i < posten.length; i++) {
+            if (posten[i].art != "Lieferung")
+                return;
+            if (posten[i].art == "Lieferung") {
+                var radioB2: HTMLInputElement = document.createElement("input");
+                radioB2.type = "radio";
+                radioB2.name = "radioGroupLieferoptionen";
+                radioB2.value = "radio2." + i;
+                radioB2.id = "radio2." + i;
+                lieferopt.appendChild(radioB2);
 
-            var label3: HTMLLabelElement = document.createElement("label");
-            label3.id = "label3." + i;
-            label3.htmlFor = radioB2.id;
-            label3.innerText = lieferOptionen[i].art;
-            lieferopt.appendChild(label3);
+                var label3: HTMLLabelElement = document.createElement("label");
+                label3.id = "label3." + i;
+                label3.htmlFor = radioB2.id;
+                label3.innerText = posten[i].name;
+                lieferopt.appendChild(label3);
+            }
         }
 
         //Button:
@@ -167,7 +187,7 @@ namespace Aufgabe10 {
 
     function warenkorb(_event: Event): void {
         console.log(_event.target);
-        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
+      /*  let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         // console.log("Changed " + target.name + " to " + target.value);
         let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
         if (target.id == "selectBaumart") {
@@ -180,7 +200,7 @@ namespace Aufgabe10 {
             var create: HTMLParagraphElement = document.createElement("p");
             create.className = "warenkorbContent";
             create.innerText = selectElement.options[index].textContent + baumarten[index].preis;
-            zsmfassung.appendChild(create);
+            zsmfassung.appendChild(create); 
         }
         if (target.name == "radioGroupHalterung") {
             let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
@@ -250,19 +270,19 @@ namespace Aufgabe10 {
                     checkedId.push(text);
                     console.log("array:" + checkedId);
                     console.log(checkedId.length);
-                    
+
                 }
             }
             for (let i: number = 0; i < checkedId.length; i++) {
-            var create: HTMLParagraphElement = document.createElement("p");
-            create.className = "warenkorbContent";
-            create.innerText = checkedId[i];
-            zsmfassung.appendChild(create);
-                }
+                var create: HTMLParagraphElement = document.createElement("p");
+                create.className = "warenkorbContent";
+                create.innerText = checkedId[i];
+                zsmfassung.appendChild(create);
+            }
 
         }
 
-
+*/
 
 
     }
