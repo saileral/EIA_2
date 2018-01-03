@@ -23,7 +23,6 @@ namespace Aufgabe10 {
                 var opt: HTMLElement = document.createElement("option");
                 opt.innerText = posten[i].name;
                 opt.id = "option" + i;
-                // opt.value = nicht möglich "keine eigenschaft von HTML Element"
                 selectBox.appendChild(opt);
             }
         }

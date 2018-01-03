@@ -23,7 +23,6 @@ var Aufgabe10;
                 var opt = document.createElement("option");
                 opt.innerText = Aufgabe10.posten[i].name;
                 opt.id = "option" + i;
-                // opt.value = nicht m�glich "keine eigenschaft von HTML Element"
                 selectBox.appendChild(opt);
             }
         }
