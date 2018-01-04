@@ -11,7 +11,7 @@ var Aufgabe10;
     var zusatz;
     var label;
     var basketBaumart = [Aufgabe10.bA[0][0], "" + Aufgabe10.bA[0][1]];
-    var basketHalter = ["kein Halter", "0"];
+    var basketHalter = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung = [Aufgabe10.b[0][0], "" + Aufgabe10.b[0][1]];
     var basketSchmuck = [];
     function createElements() {
@@ -84,6 +84,8 @@ var Aufgabe10;
                 stepper.max = "15";
                 stepper.step = "1";
                 schmuckartikel.appendChild(stepper);
+                var br = document.createElement("br");
+                schmuckartikel.appendChild(br);
             }
         }
         //Deine Daten:

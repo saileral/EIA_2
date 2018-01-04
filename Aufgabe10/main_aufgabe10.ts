@@ -12,7 +12,7 @@ namespace Aufgabe10 {
     var label: HTMLLabelElement;
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
-    var basketHalter: string[] = ["kein Halter", "0"];
+    var basketHalter: string[] = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung: string[] =  [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
 
@@ -93,6 +93,8 @@ namespace Aufgabe10 {
                 stepper.max = "15";
                 stepper.step = "1";
                 schmuckartikel.appendChild(stepper);
+                var br: HTMLElement = document.createElement("br");
+                schmuckartikel.appendChild(br);
             }
         }
 
