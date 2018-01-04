@@ -171,53 +171,50 @@ var Aufgabe10;
     }
     function warenkorb(_event) {
         var target = _event.target;
-        var werte = [];
-        var check = [];
+        var stepper = [];
+        var checkBoxes = [];
         var gesamtpreis = 0;
-        var korb = document.getElementById("zusammenfassung");
-        korb.style.width = "25%";
-        korb.style.height = "auto";
-        korb.style.backgroundColor = "#0B610B";
-        korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
-        console.log(target.value);
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
             if (Aufgabe10.posten[i].art == "Schmuck") {
-                werte[i] = document.getElementById("stepper" + i);
-                check[i] = document.getElementById("check" + i);
+                stepper[i] = document.getElementById("stepper" + i);
+                checkBoxes[i] = document.getElementById("check" + i);
             }
             if (target.value == Aufgabe10.posten[i].name && target.id == "selectBaumart") {
                 basketBaumart[0] = Aufgabe10.posten[i].name;
                 basketBaumart[1] = "" + Aufgabe10.posten[i].preis;
             }
-            else if (target.id == "radio" + i) {
+            if (target.id == "radio" + i) {
                 basketHalter[0] = Aufgabe10.posten[i].name;
                 basketHalter[1] = "" + Aufgabe10.posten[i].preis;
             }
-            else if (target.id == "radio2." + i) {
+            if (target.id == "radio2." + i) {
                 basketLieferopt[0] = Aufgabe10.posten[i].name;
                 basketLieferopt[1] = "" + Aufgabe10.posten[i].preis;
             }
-            else if (target.value == Aufgabe10.posten[i].name && target.id == "selectBeleuchtung") {
+            if (target.value == Aufgabe10.posten[i].name && target.id == "selectBeleuchtung") {
                 basketBeleuchtung[0] = Aufgabe10.posten[i].name;
                 basketBeleuchtung[1] = "" + Aufgabe10.posten[i].preis;
             }
-            else if (target.id == "check" + i || target.id == "stepper" + i) {
-                basketSchmuck[i] = [Aufgabe10.posten[i].name, "" + (Aufgabe10.posten[i].preis * parseInt(werte[i].value))];
+            if (target.id == "check" + i || target.id == "stepper" + i) {
+                basketSchmuck[i] = [Aufgabe10.posten[i].name, "" + (Aufgabe10.posten[i].preis * parseInt(stepper[i].value))];
             }
         }
-        gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
+        var korb = document.getElementById("zusammenfassung");
+        korb.style.width = "25%";
+        korb.style.height = "auto";
+        korb.style.backgroundColor = "#0B610B";
+        korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
         korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <br>";
         korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
         korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
-        for (var i = 0; i < werte.length; i++) {
-            if (check[i] != null) {
-                if (check[i].checked == true) {
-                    gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
-                }
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
+        gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]) + parseFloat(basketLieferopt[1]);
+        for (var i = 0; i < stepper.length; i++) {
+            if (checkBoxes[i] != null && checkBoxes[i].checked == true) {
+                gesamtpreis += parseFloat(basketSchmuck[i][1]);
+                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
             }
         }
-        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
     function handleMouseDown(_event) {
