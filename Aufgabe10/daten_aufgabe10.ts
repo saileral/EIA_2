@@ -34,32 +34,18 @@ namespace Aufgabe10 {
         { art: "Lieferung", name: "Express-Lieferung", preis: 4.88 }
     ];
     
-    export let bA: string[][];
-    export let h: string[][];
-    export let b: string[][];
-    export let s: string[][];
-    export let l: string[][];
+    export let bA: string[][] = [];
+    export let b: string[][] = [];
+    
     for (var i: number = 0; i < posten.length; i++) {
         if (posten[i].art == "Baumart") {
            var temp: any = [posten[i].name, posten[i].preis]; 
            bA.push(temp);
         }
-        if (posten[i].art == "Halter") {
-           var temp: any = [posten[i].name, posten[i].preis]; 
-           h.push(temp);
-        }
+
         if (posten[i].art == "Beleuchtung") {
            var temp: any = [posten[i].name, posten[i].preis]; 
            b.push(temp);
         }
-        if (posten[i].art == "Schmuck") {
-           var temp: any = [posten[i].name, posten[i].preis]; 
-           s.push(temp);
-        }
-        if (posten[i].art == "Lieferung") {
-           var temp: any = [posten[i].name, posten[i].preis]; 
-           l.push(temp);
-        }
     }
-   
 }

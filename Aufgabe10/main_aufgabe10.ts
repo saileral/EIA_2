@@ -1,6 +1,7 @@
 namespace Aufgabe10 {
     window.addEventListener("load", createElements);
     window.addEventListener("change", warenkorb);
+    
     var name: HTMLInputElement;
     var strasse: HTMLInputElement;
     var hNr: HTMLInputElement;
@@ -11,10 +12,10 @@ namespace Aufgabe10 {
     var label: HTMLLabelElement;
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
-    var basketHalter: string[] = ["Halter", " noch auswählen 0"];
-    var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
+    var basketHalter: string[] = ["kein Halter", "0"];
+    var basketBeleuchtung: string[] =  [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
-    
+
     function createElements(): void {
         //Baumart:
         let baumart: HTMLDivElement = <HTMLDivElement>document.getElementById("baumart");
@@ -57,6 +58,7 @@ namespace Aufgabe10 {
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (let i: number = 0; i < posten.length; i++) {
+
             if (posten[i].art == "Beleuchtung") {
                 var opt2: HTMLElement = document.createElement("option");
                 opt2.innerText = posten[i].name;
@@ -100,6 +102,7 @@ namespace Aufgabe10 {
         name.type = "text";
         name.name = "DatenName";
         name.placeholder = "Name";
+//        name.pattern = "[a-z]";
         name.required = true;
         daten.appendChild(name);
 
@@ -107,14 +110,15 @@ namespace Aufgabe10 {
         strasse.type = "text";
         strasse.name = "DatenStrasse";
         strasse.placeholder = "Straße";
+//        name.pattern = "[a-z]";
         strasse.required = true;
         daten.appendChild(strasse);
 
         hNr = document.createElement("input");
         hNr.type = "text";
         hNr.name = "DatenHausnummer";
-        hNr.placeholder = "Hausnummer, bitte 3-stellig";
-        hNr.pattern = "[0-9]{3}";
+        hNr.placeholder = "Hausnummer";
+        hNr.pattern = "[0-9]{2}";
         hNr.required = true;
         daten.appendChild(hNr);
 
@@ -122,6 +126,7 @@ namespace Aufgabe10 {
         ort.type = "text";
         ort.name = "DatenOrt";
         ort.placeholder = "Ort";
+//        name.pattern = "[a-z]";
         ort.required = true;
         daten.appendChild(ort);
 
@@ -183,12 +188,19 @@ namespace Aufgabe10 {
         let check: HTMLInputElement[] = [];
         let gesamtpreis: number = 0;
 
-        for (let i: number = 10; i < 23; i++) {
-            werte[i] = <HTMLInputElement>document.getElementById("stepper" + i);
-            check[i - 10] = <HTMLInputElement>document.getElementById("check" + i);
-        }
+        let korb: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
+        korb.style.width = "40%";
+        korb.style.height = "auto";
+        korb.style.border = "1px solid black";
+        korb.innerHTML = "<span>Warenkorb</span> <p></p>";
+        console.log(target.value);
 
         for (let i: number = 0; i < posten.length; i++) {
+
+            if (posten[i].art == "Schmuck") {
+                werte[i] = <HTMLInputElement>document.getElementById("stepper" + i);
+                check[i] = <HTMLInputElement>document.getElementById("check" + i);
+            }
 
             if (target.value == posten[i].name && target.id == "selectBaumart") {
                 basketBaumart[0] = posten[i].name;
@@ -205,32 +217,29 @@ namespace Aufgabe10 {
 
             }
             else if (target.id == "check" + i || target.id == "stepper" + i) {
-                basketSchmuck[i - 10] = [posten[i].name, "" + (posten[i].preis * parseInt(werte[i].value))];
+                basketSchmuck[i] = [posten[i].name, "" + (posten[i].preis * parseInt(werte[i].value))];
 
             }
 
 
         }
-
-        let shoppingBasket: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
-        shoppingBasket.style.width = "30%";
-        shoppingBasket.style.height = "auto";
-        shoppingBasket.style.border = "1px solid black";
-        shoppingBasket.innerHTML = "<span>Warenkorb</span> <p></p>";
-        shoppingBasket.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
-        shoppingBasket.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
-        shoppingBasket.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
 
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
-        
-        for (let i: number = 0; i < 13; i++) {
-            if (check[i].checked == true) {
-                gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                shoppingBasket.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
+
+        korb.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
+
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
+        for (let i: number = 0; i < werte.length; i++) {
+            if (check[i] != null) {
+                if (check[i].checked == true) {
+                    gesamtpreis += parseFloat(basketSchmuck[i][1]);
+                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+                }
             }
         }
-
-        shoppingBasket.innerHTML += " Gesamtpreis : " + gesamtpreis + "€";
+        korb.innerHTML += " Gesamtpreis : " + Math.round(gesamtpreis * 100) / 100 + "€";
 
     }
 
@@ -239,10 +248,12 @@ namespace Aufgabe10 {
         let feedback: HTMLDivElement = document.createElement("div");
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
+            feedback.style.color = "red";
             document.body.appendChild(feedback);
         }
         else {
             feedback.innerText = "Info zu deiner Bestellung: Deine Daten wurden korrekt angegeben, vielen Dank.";
+            feedback.style.color = "green";
             document.body.appendChild(feedback);
         }
     }

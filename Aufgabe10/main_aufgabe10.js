@@ -11,7 +11,7 @@ var Aufgabe10;
     var zusatz;
     var label;
     var basketBaumart = [Aufgabe10.bA[0][0], "" + Aufgabe10.bA[0][1]];
-    var basketHalter = ["Halter", " noch auswählen 0"];
+    var basketHalter = ["kein Halter", "0"];
     var basketBeleuchtung = [Aufgabe10.b[0][0], "" + Aufgabe10.b[0][1]];
     var basketSchmuck = [];
     function createElements() {
@@ -92,25 +92,28 @@ var Aufgabe10;
         name.type = "text";
         name.name = "DatenName";
         name.placeholder = "Name";
+        //        name.pattern = "[a-z]";
         name.required = true;
         daten.appendChild(name);
         strasse = document.createElement("input");
         strasse.type = "text";
         strasse.name = "DatenStrasse";
         strasse.placeholder = "Straße";
+        //        name.pattern = "[a-z]";
         strasse.required = true;
         daten.appendChild(strasse);
         hNr = document.createElement("input");
         hNr.type = "text";
         hNr.name = "DatenHausnummer";
-        hNr.placeholder = "Hausnummer, bitte 3-stellig";
-        hNr.pattern = "[0-9]{3}";
+        hNr.placeholder = "Hausnummer";
+        hNr.pattern = "[0-9]{2}";
         hNr.required = true;
         daten.appendChild(hNr);
         ort = document.createElement("input");
         ort.type = "text";
         ort.name = "DatenOrt";
         ort.placeholder = "Ort";
+        //        name.pattern = "[a-z]";
         ort.required = true;
         daten.appendChild(ort);
         plz = document.createElement("input");
@@ -164,11 +167,17 @@ var Aufgabe10;
         var werte = [];
         var check = [];
         var gesamtpreis = 0;
-        for (var i = 10; i < 23; i++) {
-            werte[i] = document.getElementById("stepper" + i);
-            check[i - 10] = document.getElementById("check" + i);
-        }
+        var korb = document.getElementById("zusammenfassung");
+        korb.style.width = "40%";
+        korb.style.height = "auto";
+        korb.style.border = "1px solid black";
+        korb.innerHTML = "<span>Warenkorb</span> <p></p>";
+        console.log(target.value);
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
+            if (Aufgabe10.posten[i].art == "Schmuck") {
+                werte[i] = document.getElementById("stepper" + i);
+                check[i] = document.getElementById("check" + i);
+            }
             if (target.value == Aufgabe10.posten[i].name && target.id == "selectBaumart") {
                 basketBaumart[0] = Aufgabe10.posten[i].name;
                 basketBaumart[1] = "" + Aufgabe10.posten[i].preis;
@@ -182,34 +191,33 @@ var Aufgabe10;
                 basketBeleuchtung[1] = "" + Aufgabe10.posten[i].preis;
             }
             else if (target.id == "check" + i || target.id == "stepper" + i) {
-                basketSchmuck[i - 10] = [Aufgabe10.posten[i].name, "" + (Aufgabe10.posten[i].preis * parseInt(werte[i].value))];
+                basketSchmuck[i] = [Aufgabe10.posten[i].name, "" + (Aufgabe10.posten[i].preis * parseInt(werte[i].value))];
             }
         }
-        var shoppingBasket = document.getElementById("zusammenfassung");
-        shoppingBasket.style.width = "30%";
-        shoppingBasket.style.height = "auto";
-        shoppingBasket.style.border = "1px solid black";
-        shoppingBasket.innerHTML = "<span>Warenkorb</span> <p></p>";
-        shoppingBasket.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
-        shoppingBasket.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
-        shoppingBasket.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
-        for (var i = 0; i < 13; i++) {
-            if (check[i].checked == true) {
-                gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                shoppingBasket.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
+        korb.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
+        for (var i = 0; i < werte.length; i++) {
+            if (check[i] != null) {
+                if (check[i].checked == true) {
+                    gesamtpreis += parseFloat(basketSchmuck[i][1]);
+                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+                }
             }
         }
-        shoppingBasket.innerHTML += " Gesamtpreis : " + gesamtpreis + "€";
+        korb.innerHTML += " Gesamtpreis : " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
     function handleMouseDown(_event) {
         var feedback = document.createElement("div");
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
+            feedback.style.color = "red";
             document.body.appendChild(feedback);
         }
         else {
             feedback.innerText = "Info zu deiner Bestellung: Deine Daten wurden korrekt angegeben, vielen Dank.";
+            feedback.style.color = "green";
             document.body.appendChild(feedback);
         }
     }

@@ -27,26 +27,16 @@ var Aufgabe10;
         { art: "Lieferung", name: "Standard-Lieferung", preis: 0.0 },
         { art: "Lieferung", name: "Express-Lieferung", preis: 4.88 }
     ];
+    Aufgabe10.bA = [];
+    Aufgabe10.b = [];
     for (var i = 0; i < Aufgabe10.posten.length; i++) {
         if (Aufgabe10.posten[i].art == "Baumart") {
             var temp = [Aufgabe10.posten[i].name, Aufgabe10.posten[i].preis];
             Aufgabe10.bA.push(temp);
         }
-        if (Aufgabe10.posten[i].art == "Halter") {
-            var temp = [Aufgabe10.posten[i].name, Aufgabe10.posten[i].preis];
-            Aufgabe10.h.push(temp);
-        }
         if (Aufgabe10.posten[i].art == "Beleuchtung") {
             var temp = [Aufgabe10.posten[i].name, Aufgabe10.posten[i].preis];
             Aufgabe10.b.push(temp);
-        }
-        if (Aufgabe10.posten[i].art == "Schmuck") {
-            var temp = [Aufgabe10.posten[i].name, Aufgabe10.posten[i].preis];
-            Aufgabe10.s.push(temp);
-        }
-        if (Aufgabe10.posten[i].art == "Lieferung") {
-            var temp = [Aufgabe10.posten[i].name, Aufgabe10.posten[i].preis];
-            Aufgabe10.l.push(temp);
         }
     }
 })(Aufgabe10 || (Aufgabe10 = {}));
