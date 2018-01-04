@@ -10,7 +10,10 @@ var Aufgabe10;
     var mail;
     var zusatz;
     var label;
-    var checkedId = [];
+    var basketBaumart = [Aufgabe10.bA[0][0], "" + Aufgabe10.bA[0][1]];
+    var basketHalter = ["Halter", " noch auswählen 0"];
+    var basketBeleuchtung = [Aufgabe10.b[0][0], "" + Aufgabe10.b[0][1]];
+    var basketSchmuck = [];
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
@@ -75,7 +78,7 @@ var Aufgabe10;
                 var stepper = document.createElement("input");
                 stepper.type = "number";
                 stepper.name = "StepperSchmuckartikel" + i;
-                stepper.value = "0";
+                stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
                 stepper.max = "15";
@@ -94,7 +97,7 @@ var Aufgabe10;
         strasse = document.createElement("input");
         strasse.type = "text";
         strasse.name = "DatenStrasse";
-        strasse.placeholder = "Stra�e";
+        strasse.placeholder = "Straße";
         strasse.required = true;
         daten.appendChild(strasse);
         hNr = document.createElement("input");
@@ -152,119 +155,57 @@ var Aufgabe10;
         var submit = document.createElement("button");
         submit.name = "Button";
         submit.type = "button";
-        submit.innerText = "Bestellung �berpr�fen";
+        submit.innerText = "Bestellung überprüfen";
         submit.addEventListener("mousedown", handleMouseDown);
         button.appendChild(submit);
     }
     function warenkorb(_event) {
-        console.log(_event.target);
-        var zsmfassung = document.getElementById("zusammenfassung");
-        var create = document.createElement("p");
-        zsmfassung.appendChild(create);
-        var radiogroup;
-        radiogroup = (document.querySelector("input[name=radioGroupHalterung]:checked"));
-        console.log(radiogroup.value);
-        /*  let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-          // console.log("Changed " + target.name + " to " + target.value);
-          let zsmfassung: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
-          if (target.id == "selectBaumart") {
-              let selectElement: HTMLSelectElement = <HTMLSelectElement>_event.target;
-              let index: number = selectElement.selectedIndex;
-              //console.log("Index: " + index);
-              //console.log("Options: " + selectElement.options);
-              //console.log("Selected: " + selectElement.options[index]);
-              //console.log(selectElement.options[index].textContent);
-              var create: HTMLParagraphElement = document.createElement("p");
-              create.className = "warenkorbContent";
-              create.innerText = selectElement.options[index].textContent + baumarten[index].preis;
-              zsmfassung.appendChild(create);
-          }
-          if (target.name == "radioGroupHalterung") {
-              let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
-              if (inputElement.checked && inputElement.id == "radio0") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label0");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + halterungen[0].preis;
-                  zsmfassung.appendChild(create);
-              }
-              if (inputElement.checked && inputElement.id == "radio1") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label1");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + halterungen[1].preis;
-                  zsmfassung.appendChild(create);
-              }
-              if (inputElement.checked && inputElement.id == "radio2") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label2");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + halterungen[2].preis;
-                  zsmfassung.appendChild(create);
-              }
-              if (inputElement.checked && inputElement.id == "radio3") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + halterungen[3].preis;
-                  zsmfassung.appendChild(create);
-              }
-          }
-  
-          if (target.id == "selectBeleuchtung") {
-              let selectElement: HTMLSelectElement = <HTMLSelectElement>_event.target;
-              let index: number = selectElement.selectedIndex;
-              var create: HTMLParagraphElement = document.createElement("p");
-              create.className = "warenkorbContent";
-              create.innerText = selectElement.options[index].textContent + beleuchtungen[index].preis;
-              zsmfassung.appendChild(create);
-          }
-          if (target.name == "radioGroupLieferoptionen") {
-              let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
-              console.log(inputElement.id);
-              if (inputElement.checked && inputElement.id == "radio2.0") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3.0");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + lieferOptionen[0].preis;
-                  zsmfassung.appendChild(create);
-              }
-              if (inputElement.checked && inputElement.id == "radio2.1") {
-                  let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label3.1");
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = labelId.innerText + lieferOptionen[1].preis;
-                  zsmfassung.appendChild(create);
-              }
-          }
-          if (target.id == "check") {
-              let inputElement: HTMLInputElement = <HTMLInputElement>_event.target;
-              for (let i: number = 0; i < schmuck.length; i++) {
-                  if (inputElement.checked == true) {
-                      let labelId: HTMLLabelElement = <HTMLLabelElement>document.getElementById("label2." + i);
-                      let text: string = labelId.innerText;
-                      console.log(labelId.innerText);
-                      checkedId.push(text);
-                      console.log("array:" + checkedId);
-                      console.log(checkedId.length);
-  
-                  }
-              }
-              for (let i: number = 0; i < checkedId.length; i++) {
-                  var create: HTMLParagraphElement = document.createElement("p");
-                  create.className = "warenkorbContent";
-                  create.innerText = checkedId[i];
-                  zsmfassung.appendChild(create);
-              }
-  
-          }
-  
-  */
+        var target = _event.target;
+        var werte = [];
+        var check = [];
+        var gesamtpreis = 0;
+        for (var i = 10; i < 23; i++) {
+            werte[i] = document.getElementById("stepper" + i);
+            check[i - 10] = document.getElementById("check" + i);
+        }
+        for (var i = 0; i < Aufgabe10.posten.length; i++) {
+            if (target.value == Aufgabe10.posten[i].name && target.id == "selectBaumart") {
+                basketBaumart[0] = Aufgabe10.posten[i].name;
+                basketBaumart[1] = "" + Aufgabe10.posten[i].preis;
+            }
+            else if (target.id == "radio" + i) {
+                basketHalter[0] = Aufgabe10.posten[i].name;
+                basketHalter[1] = "" + Aufgabe10.posten[i].preis;
+            }
+            else if (target.value == Aufgabe10.posten[i].name && target.id == "selectBeleuchtung") {
+                basketBeleuchtung[0] = Aufgabe10.posten[i].name;
+                basketBeleuchtung[1] = "" + Aufgabe10.posten[i].preis;
+            }
+            else if (target.id == "check" + i || target.id == "stepper" + i) {
+                basketSchmuck[i - 10] = [Aufgabe10.posten[i].name, "" + (Aufgabe10.posten[i].preis * parseInt(werte[i].value))];
+            }
+        }
+        var shoppingBasket = document.getElementById("zusammenfassung");
+        shoppingBasket.style.width = "30%";
+        shoppingBasket.style.height = "auto";
+        shoppingBasket.style.border = "1px solid black";
+        shoppingBasket.innerHTML = "<span>Warenkorb</span> <p></p>";
+        shoppingBasket.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
+        shoppingBasket.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
+        shoppingBasket.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
+        gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
+        for (var i = 0; i < 13; i++) {
+            if (check[i].checked == true) {
+                gesamtpreis += parseFloat(basketSchmuck[i][1]);
+                shoppingBasket.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+            }
+        }
+        shoppingBasket.innerHTML += " Gesamtpreis : " + gesamtpreis + "€";
     }
     function handleMouseDown(_event) {
         var feedback = document.createElement("div");
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
-            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte �berpr�fe sie nocheinmal.";
+            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
             document.body.appendChild(feedback);
         }
         else {
