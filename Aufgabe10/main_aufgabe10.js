@@ -1,3 +1,7 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:04.01.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 var Aufgabe10;
 (function (Aufgabe10) {
     window.addEventListener("load", createElements);
@@ -14,6 +18,7 @@ var Aufgabe10;
     var basketHalter = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung = [Aufgabe10.b[0][0], "" + Aufgabe10.b[0][1]];
     var basketSchmuck = [];
+    var basketLieferopt = ["keine Lieferoption ausgewählt", "0"];
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
@@ -170,10 +175,10 @@ var Aufgabe10;
         var check = [];
         var gesamtpreis = 0;
         var korb = document.getElementById("zusammenfassung");
-        korb.style.width = "40%";
+        korb.style.width = "25%";
         korb.style.height = "auto";
-        korb.style.border = "1px solid black";
-        korb.innerHTML = "<span>Warenkorb</span> <p></p>";
+        korb.style.backgroundColor = "#0B610B";
+        korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
         console.log(target.value);
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
             if (Aufgabe10.posten[i].art == "Schmuck") {
@@ -188,6 +193,10 @@ var Aufgabe10;
                 basketHalter[0] = Aufgabe10.posten[i].name;
                 basketHalter[1] = "" + Aufgabe10.posten[i].preis;
             }
+            else if (target.id == "radio2." + i) {
+                basketLieferopt[0] = Aufgabe10.posten[i].name;
+                basketLieferopt[1] = "" + Aufgabe10.posten[i].preis;
+            }
             else if (target.value == Aufgabe10.posten[i].name && target.id == "selectBeleuchtung") {
                 basketBeleuchtung[0] = Aufgabe10.posten[i].name;
                 basketBeleuchtung[1] = "" + Aufgabe10.posten[i].preis;
@@ -197,21 +206,23 @@ var Aufgabe10;
             }
         }
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
-        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
-        korb.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
-        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <br>";
+        korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
         for (var i = 0; i < werte.length; i++) {
             if (check[i] != null) {
                 if (check[i].checked == true) {
                     gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
                 }
             }
         }
-        korb.innerHTML += " Gesamtpreis : " + Math.round(gesamtpreis * 100) / 100 + "€";
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
+        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
     function handleMouseDown(_event) {
         var feedback = document.createElement("div");
+        feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
             feedback.style.color = "red";

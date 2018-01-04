@@ -1,3 +1,7 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:04.01.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 
 body {
 	float: left;
@@ -46,5 +50,15 @@ button {
 }
 
 #zusammenfassung {
-	position: relative;
+	position: fixed;
+	right: 0em;
+	top: 0em;
+	color: white;
+	padding: 1em;
+	border: dotted 0.3em white;
 }
+
+.wk {
+	font-size: 1.2em;
+}
+ 

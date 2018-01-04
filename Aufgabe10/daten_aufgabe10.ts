@@ -1,3 +1,8 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:04.01.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
+
 namespace Aufgabe10 {
     //Baumart
     export interface Bestellposten {

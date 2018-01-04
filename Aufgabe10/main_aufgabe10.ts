@@ -1,7 +1,12 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:04.01.17
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
+
 namespace Aufgabe10 {
     window.addEventListener("load", createElements);
     window.addEventListener("change", warenkorb);
-    
+
     var name: HTMLInputElement;
     var strasse: HTMLInputElement;
     var hNr: HTMLInputElement;
@@ -13,8 +18,9 @@ namespace Aufgabe10 {
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
     var basketHalter: string[] = ["kein Halter ausgewählt", "0"];
-    var basketBeleuchtung: string[] =  [b[0][0], "" + b[0][1]];
+    var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
+    var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
 
     function createElements(): void {
         //Baumart:
@@ -104,7 +110,7 @@ namespace Aufgabe10 {
         name.type = "text";
         name.name = "DatenName";
         name.placeholder = "Name";
-//        name.pattern = "[a-z]";
+        //        name.pattern = "[a-z]";
         name.required = true;
         daten.appendChild(name);
 
@@ -112,7 +118,7 @@ namespace Aufgabe10 {
         strasse.type = "text";
         strasse.name = "DatenStrasse";
         strasse.placeholder = "Straße";
-//        name.pattern = "[a-z]";
+        //        name.pattern = "[a-z]";
         strasse.required = true;
         daten.appendChild(strasse);
 
@@ -128,7 +134,7 @@ namespace Aufgabe10 {
         ort.type = "text";
         ort.name = "DatenOrt";
         ort.placeholder = "Ort";
-//        name.pattern = "[a-z]";
+        //        name.pattern = "[a-z]";
         ort.required = true;
         daten.appendChild(ort);
 
@@ -191,10 +197,10 @@ namespace Aufgabe10 {
         let gesamtpreis: number = 0;
 
         let korb: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
-        korb.style.width = "40%";
+        korb.style.width = "25%";
         korb.style.height = "auto";
-        korb.style.border = "1px solid black";
-        korb.innerHTML = "<span>Warenkorb</span> <p></p>";
+        korb.style.backgroundColor = "#0B610B";
+        korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
         console.log(target.value);
 
         for (let i: number = 0; i < posten.length; i++) {
@@ -213,6 +219,11 @@ namespace Aufgabe10 {
                 basketHalter[1] = "" + posten[i].preis;
 
             }
+            else if (target.id == "radio2." + i) {
+                basketLieferopt[0] = posten[i].name;
+                basketLieferopt[1] = "" + posten[i].preis;
+
+            }
             else if (target.value == posten[i].name && target.id == "selectBeleuchtung") {
                 basketBeleuchtung[0] = posten[i].name;
                 basketBeleuchtung[1] = "" + posten[i].preis;
@@ -228,26 +239,29 @@ namespace Aufgabe10 {
 
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]);
 
-        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <p></p>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <br>";
 
-        korb.innerHTML += "" + basketHalter[0] + " " + basketHalter[1] + "€ <p></p>";
+        korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
 
-        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <p></p>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
         for (let i: number = 0; i < werte.length; i++) {
             if (check[i] != null) {
                 if (check[i].checked == true) {
                     gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <p></p>";
+                    korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
                 }
             }
         }
-        korb.innerHTML += " Gesamtpreis : " + Math.round(gesamtpreis * 100) / 100 + "€";
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
+        
+        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
 
     }
 
 
     function handleMouseDown(_event: MouseEvent): void {
         let feedback: HTMLDivElement = document.createElement("div");
+        feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
             feedback.style.color = "red";
