@@ -110,7 +110,7 @@ namespace Aufgabe10 {
         name.type = "text";
         name.name = "DatenName";
         name.placeholder = "Name";
-        //        name.pattern = "[a-z]";
+        name.pattern = "[a-zA-Z]{1,}";
         name.required = true;
         daten.appendChild(name);
 
@@ -118,7 +118,7 @@ namespace Aufgabe10 {
         strasse.type = "text";
         strasse.name = "DatenStrasse";
         strasse.placeholder = "Straße";
-        //        name.pattern = "[a-z]";
+        strasse.pattern = "[a-zA-Z]{1,}";
         strasse.required = true;
         daten.appendChild(strasse);
 
@@ -126,7 +126,7 @@ namespace Aufgabe10 {
         hNr.type = "text";
         hNr.name = "DatenHausnummer";
         hNr.placeholder = "Hausnummer";
-        hNr.pattern = "[0-9]{2}";
+        hNr.pattern = "[0-9]{1,}";
         hNr.required = true;
         daten.appendChild(hNr);
 
@@ -134,7 +134,7 @@ namespace Aufgabe10 {
         ort.type = "text";
         ort.name = "DatenOrt";
         ort.placeholder = "Ort";
-        //        name.pattern = "[a-z]";
+        ort.pattern = "[a-zA-Z]{1,}";
         ort.required = true;
         daten.appendChild(ort);
 
