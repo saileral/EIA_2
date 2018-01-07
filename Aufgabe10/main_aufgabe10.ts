@@ -21,6 +21,8 @@ namespace Aufgabe10 {
     var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
     var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
+    
+    let feedback: HTMLDivElement = document.createElement("div");
 
     function createElements(): void {
         //Baumart:
@@ -197,6 +199,7 @@ namespace Aufgabe10 {
         let gesamtpreis: number = 0;
 
         for (let i: number = 0; i < posten.length; i++) {
+            console.log(_event.target);
             if (posten[i].art == "Schmuck") {
                 stepper[i] = <HTMLInputElement>document.getElementById("stepper" + i);
                 checkBoxes[i] = <HTMLInputElement>document.getElementById("check" + i);
@@ -248,7 +251,7 @@ namespace Aufgabe10 {
 
 
     function handleMouseDown(_event: MouseEvent): void {
-        let feedback: HTMLDivElement = document.createElement("div");
+        feedback.innerText = " ";
         feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";

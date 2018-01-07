@@ -19,6 +19,7 @@ var Aufgabe10;
     var basketBeleuchtung = [Aufgabe10.b[0][0], "" + Aufgabe10.b[0][1]];
     var basketSchmuck = [];
     var basketLieferopt = ["keine Lieferoption ausgewählt", "0"];
+    var feedback = document.createElement("div");
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
@@ -175,6 +176,7 @@ var Aufgabe10;
         var checkBoxes = [];
         var gesamtpreis = 0;
         for (var i = 0; i < Aufgabe10.posten.length; i++) {
+            console.log(_event.target);
             if (Aufgabe10.posten[i].art == "Schmuck") {
                 stepper[i] = document.getElementById("stepper" + i);
                 checkBoxes[i] = document.getElementById("check" + i);
@@ -218,7 +220,7 @@ var Aufgabe10;
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
     function handleMouseDown(_event) {
-        var feedback = document.createElement("div");
+        feedback.innerText = " ";
         feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
             feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
