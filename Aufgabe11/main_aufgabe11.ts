@@ -17,10 +17,10 @@ namespace Aufgabe11 {
     var label: HTMLLabelElement;
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
-    var basketHalter: string[] = ["kein Halter ausgewÃ¤hlt", "0"];
+    var basketHalter: string[] = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
-    var basketLieferopt: string[] = ["keine Lieferoption ausgewÃ¤hlt", "0"];
+    var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
     
     let feedback: HTMLDivElement = document.createElement("div");
 
@@ -119,7 +119,7 @@ namespace Aufgabe11 {
         strasse = document.createElement("input");
         strasse.type = "text";
         strasse.name = "DatenStrasse";
-        strasse.placeholder = "StraÃŸe";
+        strasse.placeholder = "Straße";
         strasse.pattern = "[a-zA-Z]{1,}";
         strasse.required = true;
         daten.appendChild(strasse);
@@ -186,8 +186,8 @@ namespace Aufgabe11 {
         let button: HTMLDivElement = <HTMLDivElement>document.getElementById("button");
         let submit: HTMLButtonElement = document.createElement("button");
         submit.name = "Button";
-        submit.type = "button";
-        submit.innerText = "Bestellung Ã¼berprÃ¼fen";
+        submit.type = "submit";
+        submit.innerText = "Bestellung überprüfen";
         submit.addEventListener("mousedown", handleMouseDown);
         button.appendChild(submit);
     }
@@ -234,19 +234,19 @@ namespace Aufgabe11 {
         korb.style.height = "auto";
         korb.style.backgroundColor = "#0B610B";
         korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
-        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "â‚¬ <br>";
-        korb.innerHTML += "WeihnachtsbaumstÃ¤nder: " + basketHalter[0] + " " + basketHalter[1] + "â‚¬ <br>";
-        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "â‚¬ <br>";
-        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "â‚¬ <br>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <br>";
+        korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
 
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]) + parseFloat(basketLieferopt[1]);
         for (let i: number = 0; i < stepper.length; i++) {
             if (checkBoxes[i] != null && checkBoxes[i].checked == true) {
                 gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "â‚¬ <br>";
+                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
             }
         }
-        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "â‚¬";
+        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
 
 
@@ -254,7 +254,7 @@ namespace Aufgabe11 {
         feedback.innerText = " ";
         feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
-            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte Ã¼berprÃ¼fe sie nocheinmal.";
+            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
             feedback.style.color = "red";
             document.body.appendChild(feedback);
         }
