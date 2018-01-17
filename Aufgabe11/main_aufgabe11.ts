@@ -15,20 +15,21 @@ namespace Aufgabe11 {
     var mail: HTMLInputElement;
     var zusatz: HTMLTextAreaElement;
     var label: HTMLLabelElement;
+    var checkB: HTMLInputElement;
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
-    var basketHalter: string[] = ["kein Halter ausgewählt", "0"];
+    var basketHalter: string[] = ["kein Halter ausgewÃ¤hlt", "0"];
     var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
-    var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
-    
+    var basketLieferopt: string[] = ["keine Lieferoption ausgewÃ¤hlt", "0"];
+
     let feedback: HTMLDivElement = document.createElement("div");
 
     function createElements(): void {
         //Baumart:
         let baumart: HTMLDivElement = <HTMLDivElement>document.getElementById("baumart");
         let selectBox: HTMLSelectElement = document.createElement("select");
-        selectBox.name = "SelectBaumart";
+        selectBox.name = "Baumart";
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (let i: number = 0; i < posten.length; i++) {
@@ -46,8 +47,8 @@ namespace Aufgabe11 {
             if (posten[i].art == "Halter") {
                 var radioB: HTMLInputElement = document.createElement("input");
                 radioB.type = "radio";
-                radioB.name = "radioGroupHalterung";
-                radioB.value = "radio" + i;
+                radioB.name = "Halterung";
+                radioB.value = posten[i].name;
                 radioB.id = "radio" + i;
                 halterung.appendChild(radioB);
 
@@ -62,7 +63,7 @@ namespace Aufgabe11 {
         //Beleuchtung:
         let beleuchtung: HTMLDivElement = <HTMLDivElement>document.getElementById("beleuchtung");
         let selectBox2: HTMLSelectElement = document.createElement("select");
-        selectBox2.name = "SelectBeleuchtung";
+        selectBox2.name = "Beleuchtung";
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (let i: number = 0; i < posten.length; i++) {
@@ -77,12 +78,13 @@ namespace Aufgabe11 {
 
         //Schmuckartikel:
         let schmuckartikel: HTMLDivElement = <HTMLDivElement>document.getElementById("schmuckartikel");
+        checkB = document.createElement("input");
         for (let i: number = 0; i < posten.length; i++) {
             if (posten[i].art == "Schmuck") {
-                var checkB: HTMLInputElement = document.createElement("input");
+                //                var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "CheckboxSchmuckartikel";
-                checkB.value = "check";
+                //                checkB.name = "Schmuckartikel";
+                //                checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
 
@@ -94,7 +96,7 @@ namespace Aufgabe11 {
 
                 let stepper: HTMLInputElement = document.createElement("input");
                 stepper.type = "number";
-                stepper.name = "StepperSchmuckartikel" + i;
+                //                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
@@ -110,7 +112,7 @@ namespace Aufgabe11 {
         let daten: HTMLDivElement = <HTMLDivElement>document.getElementById("daten");
         name = document.createElement("input");
         name.type = "text";
-        name.name = "DatenName";
+        name.name = "Name";
         name.placeholder = "Name";
         name.pattern = "[a-zA-Z]{1,}";
         name.required = true;
@@ -118,15 +120,15 @@ namespace Aufgabe11 {
 
         strasse = document.createElement("input");
         strasse.type = "text";
-        strasse.name = "DatenStrasse";
-        strasse.placeholder = "Straße";
+        strasse.name = "StraÃŸe";
+        strasse.placeholder = "StraÃŸe";
         strasse.pattern = "[a-zA-Z]{1,}";
         strasse.required = true;
         daten.appendChild(strasse);
 
         hNr = document.createElement("input");
         hNr.type = "text";
-        hNr.name = "DatenHausnummer";
+        hNr.name = "Hausnummer";
         hNr.placeholder = "Hausnummer";
         hNr.pattern = "[0-9]{1,}";
         hNr.required = true;
@@ -134,7 +136,7 @@ namespace Aufgabe11 {
 
         ort = document.createElement("input");
         ort.type = "text";
-        ort.name = "DatenOrt";
+        ort.name = "Ort";
         ort.placeholder = "Ort";
         ort.pattern = "[a-zA-Z]{1,}";
         ort.required = true;
@@ -142,7 +144,7 @@ namespace Aufgabe11 {
 
         plz = document.createElement("input");
         plz.type = "text";
-        plz.name = "DatenPLZ";
+        plz.name = "Postleitzahl";
         plz.placeholder = "Postleitzahl";
         plz.pattern = "[0-9]{5}";
         plz.required = true;
@@ -150,13 +152,13 @@ namespace Aufgabe11 {
 
         mail = document.createElement("input");
         mail.type = "email";
-        mail.name = "DatenMail";
+        mail.name = "Mail-Adresse";
         mail.placeholder = "E-Mail";
         mail.required = true;
         daten.appendChild(mail);
 
         zusatz = document.createElement("textarea");
-        zusatz.name = "DatenZusatz";
+        zusatz.name = "Datenzusatz";
         zusatz.placeholder = "Adresszusatz";
         zusatz.cols = 30;
         zusatz.rows = 3;
@@ -169,8 +171,8 @@ namespace Aufgabe11 {
             if (posten[i].art == "Lieferung") {
                 var radioB2: HTMLInputElement = document.createElement("input");
                 radioB2.type = "radio";
-                radioB2.name = "radioGroupLieferoptionen";
-                radioB2.value = "radio2." + i;
+                radioB2.name = "Lieferoptionen";
+                radioB2.value = posten[i].name;
                 radioB2.id = "radio2." + i;
                 lieferopt.appendChild(radioB2);
 
@@ -185,9 +187,8 @@ namespace Aufgabe11 {
         //Button:
         let button: HTMLDivElement = <HTMLDivElement>document.getElementById("button");
         let submit: HTMLButtonElement = document.createElement("button");
-        submit.name = "Button";
         submit.type = "submit";
-        submit.innerText = "Bestellung überprüfen";
+        submit.innerText = "Bestellung Ã¼berprÃ¼fen";
         submit.addEventListener("mousedown", handleMouseDown);
         button.appendChild(submit);
     }
@@ -200,6 +201,8 @@ namespace Aufgabe11 {
 
         for (let i: number = 0; i < posten.length; i++) {
             console.log(_event.target);
+            if (checkB.checked == true)
+                checkB.name = posten[i].name;
             if (posten[i].art == "Schmuck") {
                 stepper[i] = <HTMLInputElement>document.getElementById("stepper" + i);
                 checkBoxes[i] = <HTMLInputElement>document.getElementById("check" + i);
@@ -228,25 +231,25 @@ namespace Aufgabe11 {
 
             }
         }
-        
+
         let korb: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
         korb.style.width = "25%";
         korb.style.height = "auto";
         korb.style.backgroundColor = "#0B610B";
         korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
-        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "€ <br>";
-        korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
-        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
-        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + " <br>";
+        korb.innerHTML += "WeihnachtsbaumstÃ¤nder: " + basketHalter[0] + " " + basketHalter[1] + "â‚¬ <br>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "â‚¬ <br>";
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "â‚¬ <br>";
 
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]) + parseFloat(basketLieferopt[1]);
         for (let i: number = 0; i < stepper.length; i++) {
             if (checkBoxes[i] != null && checkBoxes[i].checked == true) {
                 gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
+                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "â‚¬ <br>";
             }
         }
-        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
+        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "â‚¬";
     }
 
 
@@ -254,7 +257,7 @@ namespace Aufgabe11 {
         feedback.innerText = " ";
         feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
-            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
+            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte Ã¼berprÃ¼fe sie nocheinmal.";
             feedback.style.color = "red";
             document.body.appendChild(feedback);
         }

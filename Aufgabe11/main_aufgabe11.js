@@ -14,17 +14,18 @@ var Aufgabe11;
     var mail;
     var zusatz;
     var label;
+    var checkB;
     var basketBaumart = [Aufgabe11.bA[0][0], "" + Aufgabe11.bA[0][1]];
-    var basketHalter = ["kein Halter ausgew�hlt", "0"];
+    var basketHalter = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung = [Aufgabe11.b[0][0], "" + Aufgabe11.b[0][1]];
     var basketSchmuck = [];
-    var basketLieferopt = ["keine Lieferoption ausgew�hlt", "0"];
+    var basketLieferopt = ["keine Lieferoption ausgewählt", "0"];
     var feedback = document.createElement("div");
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
         var selectBox = document.createElement("select");
-        selectBox.name = "SelectBaumart";
+        selectBox.name = "Baumart";
         selectBox.id = "selectBaumart";
         baumart.appendChild(selectBox);
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
@@ -41,8 +42,8 @@ var Aufgabe11;
             if (Aufgabe11.posten[i].art == "Halter") {
                 var radioB = document.createElement("input");
                 radioB.type = "radio";
-                radioB.name = "radioGroupHalterung";
-                radioB.value = "radio" + i;
+                radioB.name = "Halterung";
+                radioB.value = Aufgabe11.posten[i].name;
                 radioB.id = "radio" + i;
                 halterung.appendChild(radioB);
                 label = document.createElement("label");
@@ -55,7 +56,7 @@ var Aufgabe11;
         //Beleuchtung:
         var beleuchtung = document.getElementById("beleuchtung");
         var selectBox2 = document.createElement("select");
-        selectBox2.name = "SelectBeleuchtung";
+        selectBox2.name = "Beleuchtung";
         selectBox2.id = "selectBeleuchtung";
         beleuchtung.appendChild(selectBox2);
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
@@ -68,12 +69,13 @@ var Aufgabe11;
         }
         //Schmuckartikel:
         var schmuckartikel = document.getElementById("schmuckartikel");
+        checkB = document.createElement("input");
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
             if (Aufgabe11.posten[i].art == "Schmuck") {
-                var checkB = document.createElement("input");
+                //                var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "CheckboxSchmuckartikel";
-                checkB.value = "check";
+                //                checkB.name = "Schmuckartikel";
+                //                checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
                 var label2 = document.createElement("label");
@@ -83,7 +85,7 @@ var Aufgabe11;
                 schmuckartikel.appendChild(label2);
                 var stepper = document.createElement("input");
                 stepper.type = "number";
-                stepper.name = "StepperSchmuckartikel" + i;
+                //                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
@@ -98,47 +100,47 @@ var Aufgabe11;
         var daten = document.getElementById("daten");
         name = document.createElement("input");
         name.type = "text";
-        name.name = "DatenName";
+        name.name = "Name";
         name.placeholder = "Name";
         name.pattern = "[a-zA-Z]{1,}";
         name.required = true;
         daten.appendChild(name);
         strasse = document.createElement("input");
         strasse.type = "text";
-        strasse.name = "DatenStrasse";
-        strasse.placeholder = "Stra�e";
+        strasse.name = "Straße";
+        strasse.placeholder = "Straße";
         strasse.pattern = "[a-zA-Z]{1,}";
         strasse.required = true;
         daten.appendChild(strasse);
         hNr = document.createElement("input");
         hNr.type = "text";
-        hNr.name = "DatenHausnummer";
+        hNr.name = "Hausnummer";
         hNr.placeholder = "Hausnummer";
         hNr.pattern = "[0-9]{1,}";
         hNr.required = true;
         daten.appendChild(hNr);
         ort = document.createElement("input");
         ort.type = "text";
-        ort.name = "DatenOrt";
+        ort.name = "Ort";
         ort.placeholder = "Ort";
         ort.pattern = "[a-zA-Z]{1,}";
         ort.required = true;
         daten.appendChild(ort);
         plz = document.createElement("input");
         plz.type = "text";
-        plz.name = "DatenPLZ";
+        plz.name = "Postleitzahl";
         plz.placeholder = "Postleitzahl";
         plz.pattern = "[0-9]{5}";
         plz.required = true;
         daten.appendChild(plz);
         mail = document.createElement("input");
         mail.type = "email";
-        mail.name = "DatenMail";
+        mail.name = "Mail-Adresse";
         mail.placeholder = "E-Mail";
         mail.required = true;
         daten.appendChild(mail);
         zusatz = document.createElement("textarea");
-        zusatz.name = "DatenZusatz";
+        zusatz.name = "Datenzusatz";
         zusatz.placeholder = "Adresszusatz";
         zusatz.cols = 30;
         zusatz.rows = 3;
@@ -150,8 +152,8 @@ var Aufgabe11;
             if (Aufgabe11.posten[i].art == "Lieferung") {
                 var radioB2 = document.createElement("input");
                 radioB2.type = "radio";
-                radioB2.name = "radioGroupLieferoptionen";
-                radioB2.value = "radio2." + i;
+                radioB2.name = "Lieferoptionen";
+                radioB2.value = Aufgabe11.posten[i].name;
                 radioB2.id = "radio2." + i;
                 lieferopt.appendChild(radioB2);
                 var label3 = document.createElement("label");
@@ -164,9 +166,8 @@ var Aufgabe11;
         //Button:
         var button = document.getElementById("button");
         var submit = document.createElement("button");
-        submit.name = "Button";
         submit.type = "submit";
-        submit.innerText = "Bestellung �berpr�fen";
+        submit.innerText = "Bestellung überprüfen";
         submit.addEventListener("mousedown", handleMouseDown);
         button.appendChild(submit);
     }
@@ -177,6 +178,8 @@ var Aufgabe11;
         var gesamtpreis = 0;
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
             console.log(_event.target);
+            if (checkB.checked == true)
+                checkB.name = Aufgabe11.posten[i].name;
             if (Aufgabe11.posten[i].art == "Schmuck") {
                 stepper[i] = document.getElementById("stepper" + i);
                 checkBoxes[i] = document.getElementById("check" + i);
@@ -206,24 +209,24 @@ var Aufgabe11;
         korb.style.height = "auto";
         korb.style.backgroundColor = "#0B610B";
         korb.innerHTML = "<span class='wk'>Warenkorb</span><hr>";
-        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + "� <br>";
-        korb.innerHTML += "Weihnachtsbaumst�nder: " + basketHalter[0] + " " + basketHalter[1] + "� <br>";
-        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "� <br>";
-        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "� <br>";
+        korb.innerHTML += "" + basketBaumart[0] + " " + basketBaumart[1] + " <br>";
+        korb.innerHTML += "Weihnachtsbaumständer: " + basketHalter[0] + " " + basketHalter[1] + "€ <br>";
+        korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
+        korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]) + parseFloat(basketLieferopt[1]);
         for (var i = 0; i < stepper.length; i++) {
             if (checkBoxes[i] != null && checkBoxes[i].checked == true) {
                 gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "� <br>";
+                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
             }
         }
-        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "�";
+        korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
     }
     function handleMouseDown(_event) {
         feedback.innerText = " ";
         feedback.style.paddingBottom = "1em";
         if (name.checkValidity() == false || strasse.checkValidity() == false || hNr.checkValidity() == false || ort.checkValidity() == false || plz.checkValidity() == false || mail.checkValidity() == false) {
-            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte �berpr�fe sie nocheinmal.";
+            feedback.innerText = "Info zu deiner Bestellung: Du scheinst Deine Daten nicht korrekt angegeben zu haben. Bitte überprüfe sie nocheinmal.";
             feedback.style.color = "red";
             document.body.appendChild(feedback);
         }
