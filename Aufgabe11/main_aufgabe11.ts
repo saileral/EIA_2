@@ -15,7 +15,6 @@ namespace Aufgabe11 {
     var mail: HTMLInputElement;
     var zusatz: HTMLTextAreaElement;
     var label: HTMLLabelElement;
-    var checkB: HTMLInputElement;
 
     var basketBaumart: string[] = [bA[0][0], "" + bA[0][1]];
     var basketHalter: string[] = ["kein Halter ausgewählt", "0"];
@@ -24,6 +23,8 @@ namespace Aufgabe11 {
     var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
 
     let feedback: HTMLDivElement = document.createElement("div");
+    
+    let gesamtpreisVR: HTMLInputElement = document.createElement("input");
 
     function createElements(): void {
         //Baumart:
@@ -78,13 +79,13 @@ namespace Aufgabe11 {
 
         //Schmuckartikel:
         let schmuckartikel: HTMLDivElement = <HTMLDivElement>document.getElementById("schmuckartikel");
-        checkB = document.createElement("input");
+        var checkB: HTMLInputElement = document.createElement("input");
         for (let i: number = 0; i < posten.length; i++) {
             if (posten[i].art == "Schmuck") {
-                //                var checkB: HTMLInputElement = document.createElement("input");
+                var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
-                //                checkB.name = "Schmuckartikel";
-                //                checkB.value = "check";
+                checkB.name = "Schmuckartikel";
+                checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
 
@@ -96,7 +97,7 @@ namespace Aufgabe11 {
 
                 let stepper: HTMLInputElement = document.createElement("input");
                 stepper.type = "number";
-                //                stepper.name = "StepperSchmuckartikel" + i;
+                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
@@ -200,9 +201,7 @@ namespace Aufgabe11 {
         let gesamtpreis: number = 0;
 
         for (let i: number = 0; i < posten.length; i++) {
-            console.log(_event.target);
-            if (checkB.checked == true)
-                checkB.name = posten[i].name;
+            //            console.log(_event.target);
             if (posten[i].art == "Schmuck") {
                 stepper[i] = <HTMLInputElement>document.getElementById("stepper" + i);
                 checkBoxes[i] = <HTMLInputElement>document.getElementById("check" + i);
@@ -250,6 +249,9 @@ namespace Aufgabe11 {
             }
         }
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
+        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100;
+        korb.appendChild(gesamtpreisVR);
+        
     }
 
 

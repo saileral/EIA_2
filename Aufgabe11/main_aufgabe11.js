@@ -14,13 +14,13 @@ var Aufgabe11;
     var mail;
     var zusatz;
     var label;
-    var checkB;
     var basketBaumart = [Aufgabe11.bA[0][0], "" + Aufgabe11.bA[0][1]];
     var basketHalter = ["kein Halter ausgewählt", "0"];
     var basketBeleuchtung = [Aufgabe11.b[0][0], "" + Aufgabe11.b[0][1]];
     var basketSchmuck = [];
     var basketLieferopt = ["keine Lieferoption ausgewählt", "0"];
     var feedback = document.createElement("div");
+    var gesamtpreisVR = document.createElement("input");
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
@@ -69,13 +69,13 @@ var Aufgabe11;
         }
         //Schmuckartikel:
         var schmuckartikel = document.getElementById("schmuckartikel");
-        checkB = document.createElement("input");
+        var checkB = document.createElement("input");
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
             if (Aufgabe11.posten[i].art == "Schmuck") {
-                //                var checkB: HTMLInputElement = document.createElement("input");
+                var checkB = document.createElement("input");
                 checkB.type = "checkbox";
-                //                checkB.name = "Schmuckartikel";
-                //                checkB.value = "check";
+                checkB.name = "Schmuckartikel";
+                checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
                 var label2 = document.createElement("label");
@@ -85,7 +85,7 @@ var Aufgabe11;
                 schmuckartikel.appendChild(label2);
                 var stepper = document.createElement("input");
                 stepper.type = "number";
-                //                stepper.name = "StepperSchmuckartikel" + i;
+                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
@@ -177,9 +177,7 @@ var Aufgabe11;
         var checkBoxes = [];
         var gesamtpreis = 0;
         for (var i = 0; i < Aufgabe11.posten.length; i++) {
-            console.log(_event.target);
-            if (checkB.checked == true)
-                checkB.name = Aufgabe11.posten[i].name;
+            //            console.log(_event.target);
             if (Aufgabe11.posten[i].art == "Schmuck") {
                 stepper[i] = document.getElementById("stepper" + i);
                 checkBoxes[i] = document.getElementById("check" + i);
@@ -221,6 +219,8 @@ var Aufgabe11;
             }
         }
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
+        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100;
+        korb.appendChild(gesamtpreisVR);
     }
     function handleMouseDown(_event) {
         feedback.innerText = " ";
