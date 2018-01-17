@@ -25,6 +25,7 @@ namespace Aufgabe11 {
     let feedback: HTMLDivElement = document.createElement("div");
     
     let gesamtpreisVR: HTMLInputElement = document.createElement("input");
+    gesamtpreisVR.style.display = "none";
 
     function createElements(): void {
         //Baumart:

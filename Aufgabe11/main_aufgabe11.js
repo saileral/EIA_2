@@ -21,6 +21,7 @@ var Aufgabe11;
     var basketLieferopt = ["keine Lieferoption ausgewählt", "0"];
     var feedback = document.createElement("div");
     var gesamtpreisVR = document.createElement("input");
+    gesamtpreisVR.style.display = "none";
     function createElements() {
         //Baumart:
         var baumart = document.getElementById("baumart");
