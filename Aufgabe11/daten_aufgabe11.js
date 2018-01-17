@@ -2,16 +2,9 @@
      Matrikel:256030
      Datum:04.01.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
-
-namespace Aufgabe11 {
-    //Baumart
-    export interface Bestellposten {
-        art: string;
-        name: string;
-        preis: number;
-    }
-
-    export let posten: Bestellposten[] = [
+var Aufgabe11;
+(function (Aufgabe11) {
+    Aufgabe11.posten = [
         { art: "Baumart", name: "Nordmanntanne", preis: 31.55 },
         { art: "Baumart", name: "Blaufichte", preis: 48.36 },
         { art: "Baumart", name: "Fichte", preis: 29.99 },
@@ -38,19 +31,17 @@ namespace Aufgabe11 {
         { art: "Lieferung", name: "Standard-Lieferung", preis: 0.0 },
         { art: "Lieferung", name: "Express-Lieferung", preis: 4.88 }
     ];
-    
-    export let bA: string[][] = [];
-    export let b: string[][] = [];
-    
-    for (var i: number = 0; i < posten.length; i++) {
-        if (posten[i].art == "Baumart") {
-           var temp: any = [posten[i].name, posten[i].preis]; 
-           bA.push(temp);
+    Aufgabe11.bA = [];
+    Aufgabe11.b = [];
+    for (var i = 0; i < Aufgabe11.posten.length; i++) {
+        if (Aufgabe11.posten[i].art == "Baumart") {
+            var temp = [Aufgabe11.posten[i].name, Aufgabe11.posten[i].preis];
+            Aufgabe11.bA.push(temp);
         }
-
-        if (posten[i].art == "Beleuchtung") {
-           var temp: any = [posten[i].name, posten[i].preis]; 
-           b.push(temp);
+        if (Aufgabe11.posten[i].art == "Beleuchtung") {
+            var temp = [Aufgabe11.posten[i].name, Aufgabe11.posten[i].preis];
+            Aufgabe11.b.push(temp);
         }
     }
-}
+})(Aufgabe11 || (Aufgabe11 = {}));
+//# sourceMappingURL=daten_aufgabe11.js.map

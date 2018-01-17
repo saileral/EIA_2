@@ -3,7 +3,7 @@
      Datum:04.01.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 
-namespace Aufgabe10 {
+namespace Aufgabe11 {
     window.addEventListener("load", createElements);
     window.addEventListener("change", warenkorb);
 
