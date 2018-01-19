@@ -87,7 +87,7 @@ var Aufgabe11;
                 var stepper = document.createElement("input");
                 stepper.type = "number";
                 //                stepper.name = "StepperSchmuckartikel" + i;
-                //                stepper.value = "1";
+                stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "1";
                 stepper.max = "15";
