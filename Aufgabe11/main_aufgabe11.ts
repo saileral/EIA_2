@@ -99,9 +99,9 @@ namespace Aufgabe11 {
                 let stepper: HTMLInputElement = document.createElement("input");
                 stepper.type = "number";
 //                stepper.name = "StepperSchmuckartikel" + i;
-                stepper.value = "1";
+//                stepper.value = "1";
                 stepper.id = "stepper" + i;
-                stepper.min = "0";
+                stepper.min = "1";
                 stepper.max = "15";
                 stepper.step = "1";
                 schmuckartikel.appendChild(stepper);
