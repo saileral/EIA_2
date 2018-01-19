@@ -85,7 +85,7 @@ namespace Aufgabe11 {
             if (posten[i].art == "Schmuck") {
                 var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "Schmuckartikel" + posten[i].name;
+                checkB.name = "Schmuckartikel: " + posten[i].name;
                 checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);

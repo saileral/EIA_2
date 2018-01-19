@@ -75,7 +75,7 @@ var Aufgabe11;
             if (Aufgabe11.posten[i].art == "Schmuck") {
                 var checkB = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "Schmuckartikel" + Aufgabe11.posten[i].name;
+                checkB.name = "Schmuckartikel: " + Aufgabe11.posten[i].name;
                 checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
