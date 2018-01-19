@@ -85,7 +85,7 @@ namespace Aufgabe11 {
             if (posten[i].art == "Schmuck") {
                 var checkB: HTMLInputElement = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "Schmuckartikel";
+                checkB.name = "Schmuckartikel" + posten[i].name;
                 checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
@@ -98,7 +98,7 @@ namespace Aufgabe11 {
 
                 let stepper: HTMLInputElement = document.createElement("input");
                 stepper.type = "number";
-                stepper.name = "StepperSchmuckartikel" + i;
+//                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";

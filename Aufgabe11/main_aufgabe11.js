@@ -75,7 +75,7 @@ var Aufgabe11;
             if (Aufgabe11.posten[i].art == "Schmuck") {
                 var checkB = document.createElement("input");
                 checkB.type = "checkbox";
-                checkB.name = "Schmuckartikel";
+                checkB.name = "Schmuckartikel" + Aufgabe11.posten[i].name;
                 checkB.value = "check";
                 checkB.id = "check" + i;
                 schmuckartikel.appendChild(checkB);
@@ -86,7 +86,7 @@ var Aufgabe11;
                 schmuckartikel.appendChild(label2);
                 var stepper = document.createElement("input");
                 stepper.type = "number";
-                stepper.name = "StepperSchmuckartikel" + i;
+                //                stepper.name = "StepperSchmuckartikel" + i;
                 stepper.value = "1";
                 stepper.id = "stepper" + i;
                 stepper.min = "0";
