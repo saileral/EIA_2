@@ -87,9 +87,9 @@ var Aufgabe11;
                 var stepper = document.createElement("input");
                 stepper.type = "number";
                 //                stepper.name = "StepperSchmuckartikel" + i;
-                stepper.value = "1";
+                stepper.value = "0";
                 stepper.id = "stepper" + i;
-                stepper.min = "1";
+                stepper.min = "0";
                 stepper.max = "15";
                 stepper.step = "1";
                 schmuckartikel.appendChild(stepper);
@@ -177,30 +177,37 @@ var Aufgabe11;
         var stepper = [];
         var checkBoxes = [];
         var gesamtpreis = 0;
-        for (var i = 0; i < Aufgabe11.posten.length; i++) {
+        var all = document.getElementsByTagName("input");
+        for (var i = 0; i < all.length; i++) {
+            if (all[i].type == "number") {
+                if (all[i].value != "0" && target.checked == true)
+                    console.log(all[i].id, all[i].value);
+            }
+        }
+        for (var i_1 = 0; i_1 < Aufgabe11.posten.length; i_1++) {
             //            console.log(_event.target);
-            if (Aufgabe11.posten[i].art == "Schmuck") {
-                stepper[i] = document.getElementById("stepper" + i);
-                checkBoxes[i] = document.getElementById("check" + i);
+            if (Aufgabe11.posten[i_1].art == "Schmuck") {
+                stepper[i_1] = document.getElementById("stepper" + i_1);
+                checkBoxes[i_1] = document.getElementById("check" + i_1);
             }
-            if (target.value == Aufgabe11.posten[i].name && target.id == "selectBaumart") {
-                basketBaumart[0] = Aufgabe11.posten[i].name;
-                basketBaumart[1] = "" + Aufgabe11.posten[i].preis;
+            if (target.value == Aufgabe11.posten[i_1].name && target.id == "selectBaumart") {
+                basketBaumart[0] = Aufgabe11.posten[i_1].name;
+                basketBaumart[1] = "" + Aufgabe11.posten[i_1].preis;
             }
-            if (target.id == "radio" + i) {
-                basketHalter[0] = Aufgabe11.posten[i].name;
-                basketHalter[1] = "" + Aufgabe11.posten[i].preis;
+            if (target.id == "radio" + i_1) {
+                basketHalter[0] = Aufgabe11.posten[i_1].name;
+                basketHalter[1] = "" + Aufgabe11.posten[i_1].preis;
             }
-            if (target.id == "radio2." + i) {
-                basketLieferopt[0] = Aufgabe11.posten[i].name;
-                basketLieferopt[1] = "" + Aufgabe11.posten[i].preis;
+            if (target.id == "radio2." + i_1) {
+                basketLieferopt[0] = Aufgabe11.posten[i_1].name;
+                basketLieferopt[1] = "" + Aufgabe11.posten[i_1].preis;
             }
-            if (target.value == Aufgabe11.posten[i].name && target.id == "selectBeleuchtung") {
-                basketBeleuchtung[0] = Aufgabe11.posten[i].name;
-                basketBeleuchtung[1] = "" + Aufgabe11.posten[i].preis;
+            if (target.value == Aufgabe11.posten[i_1].name && target.id == "selectBeleuchtung") {
+                basketBeleuchtung[0] = Aufgabe11.posten[i_1].name;
+                basketBeleuchtung[1] = "" + Aufgabe11.posten[i_1].preis;
             }
-            if (target.id == "check" + i || target.id == "stepper" + i) {
-                basketSchmuck[i] = [Aufgabe11.posten[i].name, "" + (Aufgabe11.posten[i].preis * parseInt(stepper[i].value))];
+            if (target.id == "check" + i_1 || target.id == "stepper" + i_1) {
+                basketSchmuck[i_1] = [Aufgabe11.posten[i_1].name, "" + (Aufgabe11.posten[i_1].preis * parseInt(stepper[i_1].value))];
             }
         }
         var korb = document.getElementById("zusammenfassung");
@@ -213,14 +220,14 @@ var Aufgabe11;
         korb.innerHTML += "" + basketBeleuchtung[0] + " " + basketBeleuchtung[1] + "€ <br>";
         korb.innerHTML += " " + basketLieferopt[0] + " " + basketLieferopt[1] + "€ <br>";
         gesamtpreis = parseFloat(basketBaumart[1]) + parseFloat(basketHalter[1]) + parseFloat(basketLieferopt[1]);
-        for (var i = 0; i < stepper.length; i++) {
-            if (checkBoxes[i] != null && checkBoxes[i].checked == true) {
-                gesamtpreis += parseFloat(basketSchmuck[i][1]);
-                korb.innerHTML += "" + basketSchmuck[i][0] + " " + basketSchmuck[i][1] + "€ <br>";
+        for (var i_2 = 0; i_2 < stepper.length; i_2++) {
+            if (checkBoxes[i_2] != null && checkBoxes[i_2].checked == true) {
+                gesamtpreis += parseFloat(basketSchmuck[i_2][1]);
+                korb.innerHTML += "" + basketSchmuck[i_2][0] + " " + basketSchmuck[i_2][1] + "€ <br>";
             }
         }
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
-        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100;
+        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + " Euro";
         korb.appendChild(gesamtpreisVR);
     }
     function handleMouseDown(_event) {

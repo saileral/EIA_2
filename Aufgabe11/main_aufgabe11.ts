@@ -23,7 +23,7 @@ namespace Aufgabe11 {
     var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
 
     let feedback: HTMLDivElement = document.createElement("div");
-    
+
     let gesamtpreisVR: HTMLInputElement = document.createElement("input");
     gesamtpreisVR.style.display = "none";
 
@@ -98,10 +98,10 @@ namespace Aufgabe11 {
 
                 let stepper: HTMLInputElement = document.createElement("input");
                 stepper.type = "number";
-//                stepper.name = "StepperSchmuckartikel" + i;
-                stepper.value = "1";
+                //                stepper.name = "StepperSchmuckartikel" + i;
+                stepper.value = "0";
                 stepper.id = "stepper" + i;
-                stepper.min = "1";
+                stepper.min = "0";
                 stepper.max = "15";
                 stepper.step = "1";
                 schmuckartikel.appendChild(stepper);
@@ -200,6 +200,16 @@ namespace Aufgabe11 {
         let stepper: HTMLInputElement[] = [];
         let checkBoxes: HTMLInputElement[] = [];
         let gesamtpreis: number = 0;
+        var all: any = document.getElementsByTagName("input");
+
+        for (var i: number = 0; i < all.length; i++) {
+            if (all[i].type == "number") {
+                if (all[i].value != "0" && target.checked == true)
+                    console.log(all[i].id, all[i].value);
+                    
+            }
+        }
+
 
         for (let i: number = 0; i < posten.length; i++) {
             //            console.log(_event.target);
@@ -250,9 +260,9 @@ namespace Aufgabe11 {
             }
         }
         korb.innerHTML += "<hr> Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + "€";
-        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100;
+        gesamtpreisVR.name = "Gesamtpreis: " + Math.round(gesamtpreis * 100) / 100 + " Euro";
         korb.appendChild(gesamtpreisVR);
-        
+
     }
 
 
