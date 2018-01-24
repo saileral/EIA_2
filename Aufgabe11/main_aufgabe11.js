@@ -145,7 +145,7 @@ var Aufgabe11;
         zusatz.placeholder = "Adresszusatz";
         zusatz.cols = 30;
         zusatz.rows = 3;
-        zusatz.required = true;
+        zusatz.required = false;
         daten.appendChild(zusatz);
         //Lieferoptionen:
         var lieferopt = document.getElementById("lieferoptionen");

@@ -21,7 +21,7 @@ namespace Aufgabe10 {
     var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
     var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
-    
+
     let feedback: HTMLDivElement = document.createElement("div");
 
     function createElements(): void {
@@ -160,7 +160,7 @@ namespace Aufgabe10 {
         zusatz.placeholder = "Adresszusatz";
         zusatz.cols = 30;
         zusatz.rows = 3;
-        zusatz.required = true;
+        zusatz.required = false;
         daten.appendChild(zusatz);
 
         //Lieferoptionen:
@@ -228,7 +228,7 @@ namespace Aufgabe10 {
 
             }
         }
-        
+
         let korb: HTMLDivElement = <HTMLDivElement>document.getElementById("zusammenfassung");
         korb.style.width = "25%";
         korb.style.height = "auto";

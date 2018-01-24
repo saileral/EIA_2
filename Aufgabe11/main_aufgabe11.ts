@@ -21,7 +21,7 @@ namespace Aufgabe11 {
     var basketBeleuchtung: string[] = [b[0][0], "" + b[0][1]];
     var basketSchmuck: string[][] = [];
     var basketLieferopt: string[] = ["keine Lieferoption ausgewählt", "0"];
-
+    
     let feedback: HTMLDivElement = document.createElement("div");
 
     let gesamtpreisVR: HTMLInputElement = document.createElement("input");
@@ -164,7 +164,7 @@ namespace Aufgabe11 {
         zusatz.placeholder = "Adresszusatz";
         zusatz.cols = 30;
         zusatz.rows = 3;
-        zusatz.required = true;
+        zusatz.required = false;
         daten.appendChild(zusatz);
 
         //Lieferoptionen:
