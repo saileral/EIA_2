@@ -148,7 +148,7 @@ var Aufgabe5;
             s.update(); // Move und Draw aufrufen
         }
         //Wolke klein
-        for (var i = 0; i < cloud.length; i++) {
+        for (var i = 0; i < smallCloud.length; i++) {
             var s = smallCloud[i];
             s.update(); // Move und Draw aufrufen
         }

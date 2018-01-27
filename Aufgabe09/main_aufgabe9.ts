@@ -4,7 +4,7 @@
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 
 namespace Aufgabe9 {
-    window.addEventListener("load", init);
+   // window.addEventListener("load", test);
     window.addEventListener("keydown", handleKeydown);
     let text: HTMLElement;
     let aBisZ: string[];

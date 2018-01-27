@@ -182,7 +182,7 @@ namespace Aufgabe5 {
         }
 
         //Wolke klein
-        for (let i: number = 0; i < cloud.length; i++) {
+        for (let i: number = 0; i < smallCloud.length; i++) {
             let s: SmallCloud = smallCloud[i];
             s.update(); // Move und Draw aufrufen
         }

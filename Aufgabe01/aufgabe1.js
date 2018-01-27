@@ -5,9 +5,8 @@
 window.addEventListener("load", draw);
 function draw() {
     var canvas = document.getElementsByTagName("canvas")[0];
-    console.log(canvas);
+    //0tes HTMLElement mit dem tag-Name "Canvas" wird gespeichert
     var crc2 = canvas.getContext("2d");
-    console.log(crc2);
     //Hintergrund
     crc2.fillStyle = "#EFFBF8";
     crc2.fillRect(0, 0, 800, 600);

@@ -1,3 +1,4 @@
+
 /*   Name:Alica Sailer
      Matrikel:256030
      Datum:01.12.17
@@ -38,7 +39,6 @@ namespace StudiVZ {
     function saveData(_input: string): string {
         //Student Objekt vom Typ StudentData erstellen
         let stringToSplit: string[] = _input.split(",", 6);   //string wird in 6 Teile gesplitted
-
         if (Number.isNaN(parseInt(stringToSplit[0]))) {
             return "'Matrikelnummer' muss eine Zahl sein";
         }
