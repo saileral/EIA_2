@@ -4,7 +4,6 @@
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 
 namespace Aufgabe10 {
-    //Baumart
     export interface Bestellposten {
         art: string;
         name: string;

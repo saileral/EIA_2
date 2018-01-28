@@ -4,7 +4,7 @@
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 var Aufgabe9;
 (function (Aufgabe9) {
-    // window.addEventListener("load", test);
+    window.addEventListener("load", init);
     window.addEventListener("keydown", handleKeydown);
     var text;
     var aBisZ;

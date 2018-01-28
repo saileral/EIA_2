@@ -1,12 +1,13 @@
+
 /* Name:Alica Sailer
      Matrikel:256030
      Datum:17.12.17
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert.*/
 
 namespace Aufgabe9 {
-   // window.addEventListener("load", test);
+    window.addEventListener("load", init);
     window.addEventListener("keydown", handleKeydown);
-    let text: HTMLElement;
+    let text: HTMLDivElement;
     let aBisZ: string[];
     let tempABisZ: string = "";
 
