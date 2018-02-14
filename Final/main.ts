@@ -7,12 +7,12 @@ namespace Abschluss {
     export let crc2: CanvasRenderingContext2D;
     export let thickness: number = 30;
     let borders: boolean[][];
-     let probe: Border ;
+     
     
     function init(): void {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         crc2 = canvas.getContext("2d");
-        probe = new Border(0, 0);
+        let probe: Border = new Border(0, 0);
         probe.drawBorders();
         //crc2.fillRect(0,0,thickness,thickness);
 
