@@ -221,7 +221,6 @@ namespace Aufgabe10 {
             if (target.value == posten[i].name && target.id == "selectBeleuchtung") {
                 basketBeleuchtung[0] = posten[i].name;
                 basketBeleuchtung[1] = "" + posten[i].preis;
-
             }
             if (target.id == "check" + i || target.id == "stepper" + i) {
                 basketSchmuck[i] = [posten[i].name, "" + (posten[i].preis * parseInt(stepper[i].value))];
