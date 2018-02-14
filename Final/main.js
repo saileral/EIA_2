@@ -7,12 +7,45 @@ var Abschluss;
     window.addEventListener("load", init);
     Abschluss.thickness = 30;
     var borders;
+    var border;
     function init() {
         var canvas = document.getElementsByTagName("canvas")[0];
         Abschluss.crc2 = canvas.getContext("2d");
-        var probe = new Abschluss.Border(0, 0);
-        probe.drawBorders();
-        //crc2.fillRect(0,0,thickness,thickness);
+        var field = "" +
+            "########### ##################\n" +
+            "#  ##     # #    #   # ##   ##\n" +
+            "##    # # # # ## # # #  # #  #\n" +
+            "### # #  #  # #  #        ## #\n" +
+            "#  # ## #   ## # #######     #\n" +
+            "# #       ## #        #  # ###\n" +
+            "# ## # ###      #  #  # ##   #\n" +
+            "#    ##  ####### # #     #   #\n" +
+            "#  ##    #  # #   # ## # # ###\n" +
+            "# # # ## #                   #\n" +
+            "# #      # #  ######  ###  # #\n" +
+            "#    ### # # #    #  #   # ###\n" +
+            "#####  #   # #### ## # # #  ##\n" +
+            "##      # ##    # #### #  #  #\n" +
+            "##  ##  #   ### #       #    #\n" +
+            "#  #  #  ## #   ##### #  ### #\n" +
+            "# ###    # #  #   # #     #  #\n" +
+            "#   # # ##     ##   ##### ####\n" +
+            "#   # #    # ##   #  #  #     \n" +
+            "##############################\n";
+        var lines = field.split("\n", 20);
+        for (var y = 0; y < lines.length; y++) {
+            var tempLine = lines[y];
+            var splittedLine = tempLine.split("", 30);
+            for (var x = 0; x < splittedLine.length; x++) {
+                var character = splittedLine[x];
+                if (character == "#") {
+                    border = new Abschluss.Border(x, y);
+                    border.drawBorders();
+                }
+                else {
+                }
+            }
+        }
     }
 })(Abschluss || (Abschluss = {}));
 //# sourceMappingURL=main.js.map
