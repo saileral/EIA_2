@@ -39,7 +39,7 @@ namespace Final {
             "#   # #    # ##   #  #  #     \n" +
             "##############################\n";
         let lines: string[] = field.split("\n", 20);
-
+        
         for (var y: number = 0; y < lines.length; y++) {
 
             borders[y] = []; //initialisiere borders[y]
