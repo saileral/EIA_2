@@ -2,7 +2,7 @@ namespace Final {
     export class Player extends CanvasObjects {
 
         constructor(_x: number, _y: number) {
-            super(_x, _y);
+            super(_x * thickness - (thickness / 2), _y * thickness + (thickness / 2));
         }
 
         drawPlayer(): void {
@@ -11,10 +11,6 @@ namespace Final {
             crc2.fillStyle = "blue";
             crc2.fill();
 
-        }
-
-        movePlayer(): void {
-            //hi
         }
     }
 }

@@ -4,12 +4,15 @@
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 namespace Final {
     window.addEventListener("load", init);
+    window.addEventListener("keydown", handleKeydown);
 
     export let crc2: CanvasRenderingContext2D;
     export let thickness: number = 30;
     let borders: boolean[][];
     let border: Border;
     let player: Player;
+    let tempPositionX: number = 12;
+    let tempPositionY: number = 0;
 
     function init(): void {
         borders = []; //initialisiere borders
@@ -39,7 +42,7 @@ namespace Final {
             "#   # #    # ##   #  #  #     \n" +
             "##############################\n";
         let lines: string[] = field.split("\n", 20);
-        
+
         for (var y: number = 0; y < lines.length; y++) {
 
             borders[y] = []; //initialisiere borders[y]
@@ -60,15 +63,33 @@ namespace Final {
                 }
             }
         }
-        //player = new Player(12, 1);
-        //player.drawPlayer();
+        player = new Player(12, 0);
+        player.drawPlayer();
+    }
 
-
-
-
-
+    function handleKeydown(_event: KeyboardEvent): void {
+        console.log(_event);
+        if (_event.keyCode == 40 || _event.keyCode == 83) {
+            player = new Player(tempPositionX, tempPositionY + thickness);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 38 || _event.keyCode == 87) {
+            player = new Player(tempPositionX, tempPositionY - thickness);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 39 || _event.keyCode == 68) {
+            player = new Player(tempPositionX + thickness, tempPositionY);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 37 || _event.keyCode == 65) {
+            player = new Player(tempPositionX - thickness, tempPositionY);
+            player.drawPlayer();
+        }
 
 
 
     }
+
+
+
 }

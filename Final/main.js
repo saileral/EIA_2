@@ -5,10 +5,13 @@
 var Final;
 (function (Final) {
     window.addEventListener("load", init);
+    window.addEventListener("keydown", handleKeydown);
     Final.thickness = 30;
     var borders;
     var border;
     var player;
+    var tempPositionX = 12;
+    var tempPositionY = 0;
     function init() {
         borders = []; //initialisiere borders
         var canvas = document.getElementsByTagName("canvas")[0];
@@ -51,8 +54,27 @@ var Final;
                 }
             }
         }
-        //player = new Player(12, 1);
-        //player.drawPlayer();
+        player = new Final.Player(12, 0);
+        player.drawPlayer();
+    }
+    function handleKeydown(_event) {
+        console.log(_event);
+        if (_event.keyCode == 40 || _event.keyCode == 83) {
+            player = new Final.Player(tempPositionX, tempPositionY + Final.thickness);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 38 || _event.keyCode == 87) {
+            player = new Final.Player(tempPositionX, tempPositionY - Final.thickness);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 39 || _event.keyCode == 68) {
+            player = new Final.Player(tempPositionX + Final.thickness, tempPositionY);
+            player.drawPlayer();
+        }
+        if (_event.keyCode == 37 || _event.keyCode == 65) {
+            player = new Final.Player(tempPositionX - Final.thickness, tempPositionY);
+            player.drawPlayer();
+        }
     }
 })(Final || (Final = {}));
 //# sourceMappingURL=main.js.map
