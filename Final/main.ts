@@ -70,20 +70,16 @@ namespace Final {
     function handleKeydown(_event: KeyboardEvent): void {
         console.log(_event);
         if (_event.keyCode == 40 || _event.keyCode == 83) {
-            player = new Player(tempPositionX, tempPositionY + thickness);
-            player.drawPlayer();
+            player.y += thickness;
         }
         if (_event.keyCode == 38 || _event.keyCode == 87) {
-            player = new Player(tempPositionX, tempPositionY - thickness);
-            player.drawPlayer();
+            player.y -= thickness;
         }
         if (_event.keyCode == 39 || _event.keyCode == 68) {
-            player = new Player(tempPositionX + thickness, tempPositionY);
-            player.drawPlayer();
+            player.x += thickness;
         }
         if (_event.keyCode == 37 || _event.keyCode == 65) {
-            player = new Player(tempPositionX - thickness, tempPositionY);
-            player.drawPlayer();
+            player.x -= thickness;
         }
 
 

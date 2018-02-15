@@ -60,20 +60,16 @@ var Final;
     function handleKeydown(_event) {
         console.log(_event);
         if (_event.keyCode == 40 || _event.keyCode == 83) {
-            player = new Final.Player(tempPositionX, tempPositionY + Final.thickness);
-            player.drawPlayer();
+            player.y += Final.thickness;
         }
         if (_event.keyCode == 38 || _event.keyCode == 87) {
-            player = new Final.Player(tempPositionX, tempPositionY - Final.thickness);
-            player.drawPlayer();
+            player.y -= Final.thickness;
         }
         if (_event.keyCode == 39 || _event.keyCode == 68) {
-            player = new Final.Player(tempPositionX + Final.thickness, tempPositionY);
-            player.drawPlayer();
+            player.x += Final.thickness;
         }
         if (_event.keyCode == 37 || _event.keyCode == 65) {
-            player = new Final.Player(tempPositionX - Final.thickness, tempPositionY);
-            player.drawPlayer();
+            player.x -= Final.thickness;
         }
     }
 })(Final || (Final = {}));
