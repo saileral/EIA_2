@@ -3,21 +3,19 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Abschluss;
-(function (Abschluss) {
+var Final;
+(function (Final) {
     var Border = (function (_super) {
         __extends(Border, _super);
         function Border(_x, _y) {
-            _super.call(this, _x, _y);
-            this.x = _x * Abschluss.thickness;
-            this.y = _y * Abschluss.thickness;
+            _super.call(this, _x * Final.thickness, _y * Final.thickness);
         }
         Border.prototype.drawBorders = function () {
-            Abschluss.crc2.fillStyle = "black";
-            Abschluss.crc2.fillRect(this.x, this.y, Abschluss.thickness, Abschluss.thickness);
+            Final.crc2.fillStyle = "black";
+            Final.crc2.fillRect(this.x, this.y, Final.thickness, Final.thickness);
         };
         return Border;
-    }(Abschluss.CanvasObjects));
-    Abschluss.Border = Border;
-})(Abschluss || (Abschluss = {}));
+    }(Final.CanvasObjects));
+    Final.Border = Border;
+})(Final || (Final = {}));
 //# sourceMappingURL=Border.js.map
