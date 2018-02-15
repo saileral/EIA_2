@@ -2,15 +2,17 @@
      Matrikel:256030
      Datum:14.02.2018
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
-var Abschluss;
-(function (Abschluss) {
+var Final;
+(function (Final) {
     window.addEventListener("load", init);
-    Abschluss.thickness = 30;
+    Final.thickness = 30;
     var borders;
     var border;
+    var player;
     function init() {
+        borders = []; //initialisiere borders
         var canvas = document.getElementsByTagName("canvas")[0];
-        Abschluss.crc2 = canvas.getContext("2d");
+        Final.crc2 = canvas.getContext("2d");
         var field = "" +
             "########### ##################\n" +
             "#  ##     # #    #   # ##   ##\n" +
@@ -34,12 +36,13 @@ var Abschluss;
             "##############################\n";
         var lines = field.split("\n", 20);
         for (var y = 0; y < lines.length; y++) {
+            borders[y] = []; //initialisiere borders[y]
             var tempLine = lines[y];
             var splittedLine = tempLine.split("", 30);
             for (var x = 0; x < splittedLine.length; x++) {
                 var character = splittedLine[x];
                 if (character == "#") {
-                    border = new Abschluss.Border(x, y);
+                    border = new Final.Border(x, y);
                     border.drawBorders();
                     borders[y][x] = true;
                 }
@@ -48,6 +51,8 @@ var Abschluss;
                 }
             }
         }
+        //player = new Player(12, 1);
+        //player.drawPlayer();
     }
-})(Abschluss || (Abschluss = {}));
+})(Final || (Final = {}));
 //# sourceMappingURL=main.js.map

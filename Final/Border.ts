@@ -1,9 +1,8 @@
-namespace Abschluss {
-    export class Border {
-        x: number;
-        y: number;
-
+namespace Final {
+    export class Border extends CanvasObjects {
+        
         constructor(_x: number, _y: number) {
+            super(_x, _y);
             this.x = _x * thickness;
             this.y = _y * thickness;
         }
