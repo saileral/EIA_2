@@ -1,3 +1,7 @@
+/* Name:Alica Sailer
+     Matrikel:256030
+     Datum:14.02.2018
+     Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 var Final;
 (function (Final) {
     var CanvasObjects = (function () {

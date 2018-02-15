@@ -8,15 +8,19 @@ namespace Final {
 
     export let crc2: CanvasRenderingContext2D;
     export let thickness: number = 30;
-    let borders: boolean[][];
+    export let borders: boolean[][];
     let border: Border;
     let player: Player;
-    let tempPositionX: number = 12;
-    let tempPositionY: number = 0;
 
     function init(): void {
         borders = []; //initialisiere borders
 
+        player = new Player(11, 0);
+
+        drawField();
+    }
+
+    function drawField(): void {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         crc2 = canvas.getContext("2d");
 
@@ -59,33 +63,31 @@ namespace Final {
                     borders[y][x] = true;
                 }
                 else {
+                    crc2.fillStyle = "white";
+                    crc2.fillRect(x * 30, y * 30, 300, 300);
+
                     borders[y][x] = false;
                 }
             }
         }
-        player = new Player(12, 0);
         player.drawPlayer();
     }
 
     function handleKeydown(_event: KeyboardEvent): void {
         console.log(_event);
         if (_event.keyCode == 40 || _event.keyCode == 83) {
-            player.y += thickness;
+            player.movePlayerY(1);
         }
         if (_event.keyCode == 38 || _event.keyCode == 87) {
-            player.y -= thickness;
+            player.movePlayerY(-1);
         }
         if (_event.keyCode == 39 || _event.keyCode == 68) {
-            player.x += thickness;
+            player.movePlayerX(1);
         }
         if (_event.keyCode == 37 || _event.keyCode == 65) {
-            player.x -= thickness;
+            player.movePlayerX(-1);
         }
 
-
-
+        drawField();
     }
-
-
-
 }

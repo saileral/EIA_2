@@ -7,13 +7,14 @@ var Final;
     window.addEventListener("load", init);
     window.addEventListener("keydown", handleKeydown);
     Final.thickness = 30;
-    var borders;
     var border;
     var player;
-    var tempPositionX = 12;
-    var tempPositionY = 0;
     function init() {
-        borders = []; //initialisiere borders
+        Final.borders = []; //initialisiere borders
+        player = new Final.Player(11, 0);
+        drawField();
+    }
+    function drawField() {
         var canvas = document.getElementsByTagName("canvas")[0];
         Final.crc2 = canvas.getContext("2d");
         var field = "" +
@@ -39,7 +40,7 @@ var Final;
             "##############################\n";
         var lines = field.split("\n", 20);
         for (var y = 0; y < lines.length; y++) {
-            borders[y] = []; //initialisiere borders[y]
+            Final.borders[y] = []; //initialisiere borders[y]
             var tempLine = lines[y];
             var splittedLine = tempLine.split("", 30);
             for (var x = 0; x < splittedLine.length; x++) {
@@ -47,30 +48,32 @@ var Final;
                 if (character == "#") {
                     border = new Final.Border(x, y);
                     border.drawBorders();
-                    borders[y][x] = true;
+                    Final.borders[y][x] = true;
                 }
                 else {
-                    borders[y][x] = false;
+                    Final.crc2.fillStyle = "white";
+                    Final.crc2.fillRect(x * 30, y * 30, 300, 300);
+                    Final.borders[y][x] = false;
                 }
             }
         }
-        player = new Final.Player(12, 0);
         player.drawPlayer();
     }
     function handleKeydown(_event) {
         console.log(_event);
         if (_event.keyCode == 40 || _event.keyCode == 83) {
-            player.y += Final.thickness;
+            player.movePlayerY(1);
         }
         if (_event.keyCode == 38 || _event.keyCode == 87) {
-            player.y -= Final.thickness;
+            player.movePlayerY(-1);
         }
         if (_event.keyCode == 39 || _event.keyCode == 68) {
-            player.x += Final.thickness;
+            player.movePlayerX(1);
         }
         if (_event.keyCode == 37 || _event.keyCode == 65) {
-            player.x -= Final.thickness;
+            player.movePlayerX(-1);
         }
+        drawField();
     }
 })(Final || (Final = {}));
 //# sourceMappingURL=main.js.map
