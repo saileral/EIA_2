@@ -45,10 +45,10 @@ namespace Abschluss {
                 if (character == "#") {
                     border = new Border(x, y);
                     border.drawBorders();
-//                    borders[y][x] = true;
+                    borders[y][x] = true;
                 }
                 else {
-//                    borders[y][x] = false;
+                    borders[y][x] = false;
                 }
             }
         }

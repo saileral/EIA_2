@@ -41,8 +41,10 @@ var Abschluss;
                 if (character == "#") {
                     border = new Abschluss.Border(x, y);
                     border.drawBorders();
+                    borders[y][x] = true;
                 }
                 else {
+                    borders[y][x] = false;
                 }
             }
         }
