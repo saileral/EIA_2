@@ -11,12 +11,14 @@ namespace Final {
     export let borders: boolean[][];
     let border: Border;
     let player: Player;
+    let star: Stars;
 
     function init(): void {
         borders = []; //initialisiere borders
 
         player = new Player(11, 0);
-
+        star = new Stars(11 * thickness, 3 * thickness);
+        
         drawField();
     }
 
@@ -71,6 +73,7 @@ namespace Final {
             }
         }
         player.drawPlayer();
+        star.drawStar(5, 30, 15);
     }
 
     function handleKeydown(_event: KeyboardEvent): void {

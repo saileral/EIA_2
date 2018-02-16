@@ -9,9 +9,11 @@ var Final;
     Final.thickness = 30;
     var border;
     var player;
+    var star;
     function init() {
         Final.borders = []; //initialisiere borders
         player = new Final.Player(11, 0);
+        star = new Final.Stars(11 * Final.thickness, 3 * Final.thickness);
         drawField();
     }
     function drawField() {
@@ -58,6 +60,7 @@ var Final;
             }
         }
         player.drawPlayer();
+        star.drawStar(5, 30, 15);
     }
     function handleKeydown(_event) {
         console.log(_event);
