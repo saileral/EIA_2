@@ -102,6 +102,8 @@ var Final;
                 }
             }
         }
+        if (player.x == 29 && starX[i] != 19)
+            alert("Herzlichen Glueckwunsch du hast das Ziel erreicht!\nDabei konntest du " + score + " Stern(e) sammeln.");
     }
     Final.checkField = checkField;
     function scoreUpdate() {
