@@ -12,8 +12,8 @@ var Final;
     var starX = [2, 5, 20, 14, 27, 15];
     var starY = [1, 13, 18, 5, 2, 11];
     var star = [];
-    Final.score = 0;
-    Final.countdown = 200;
+    var score = 0;
+    var sterneScore;
     function init() {
         Final.borders = []; //initialisiere borders
         player = new Final.Player(11, 0);
@@ -21,6 +21,8 @@ var Final;
             star[i] = new Final.Stars(starX[i], starY[i]);
         }
         drawField();
+        sterneScore = document.getElementById("score");
+        sterneScore.innerText = "Du hast noch keinen Stern gesammelt!";
     }
     function drawField() {
         var canvas = document.getElementsByTagName("canvas")[0];
@@ -67,7 +69,8 @@ var Final;
         }
         player.drawPlayer();
         for (var i = 0; i < star.length; i++) {
-            star[i].drawStar(10, 5);
+            if (starX[i] != 100 && starY[i] != 100)
+                star[i].drawStar(10, 5);
         }
     }
     function handleKeydown(_event) {
@@ -85,8 +88,27 @@ var Final;
             player.movePlayerX(-1);
         }
         drawField();
+        scoreUpdate();
+        console.log(player.x + " " + player.y);
+        console.log(score);
     }
     function checkField() {
+        for (var i = 0; i < star.length; i++) {
+            if (player.x == starX[i] && starX[i] != 100) {
+                if (player.y == starY[i] && starY[i] != 100) {
+                    score += 1;
+                    starX[i] = 100;
+                    starY[i] = 100;
+                }
+            }
+        }
+    }
+    Final.checkField = checkField;
+    function scoreUpdate() {
+        if (score == 1)
+            sterneScore.innerText = "Du hast bereits einen Stern gesammelt.";
+        else
+            sterneScore.innerText = "Du hast bereits " + score + " Sterne gesammelt.";
     }
 })(Final || (Final = {}));
 //# sourceMappingURL=main.js.map

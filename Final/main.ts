@@ -14,8 +14,8 @@ namespace Final {
     let starX: number[] = [2, 5, 20, 14, 27, 15];
     let starY: number[] = [1, 13, 18, 5, 2, 11];
     let star: Stars[] = [];
-    export let score: number = 0;
-    export let countdown: number = 200;
+    let score: number = 0;
+    let sterneScore: HTMLDivElement;
 
     function init(): void {
         borders = []; //initialisiere borders
@@ -27,6 +27,9 @@ namespace Final {
         }
 
         drawField();
+
+        sterneScore = <HTMLDivElement>document.getElementById("score");
+        sterneScore.innerText = "Du hast noch keinen Stern gesammelt!";
     }
 
     function drawField(): void {
@@ -81,7 +84,8 @@ namespace Final {
         }
         player.drawPlayer();
         for (var i: number = 0; i < star.length; i++) {
-            star[i].drawStar(10, 5);
+            if (starX[i] != 100 && starY[i] != 100)
+                star[i].drawStar(10, 5);
         }
     }
 
@@ -101,15 +105,29 @@ namespace Final {
         }
 
         drawField();
+        scoreUpdate();
+
+        console.log(player.x + " " + player.y);
+        console.log(score);
     }
 
-    function checkField(): void {
+    export function checkField(): void {
+        for (var i: number = 0; i < star.length; i++) {
+            if (player.x == starX[i] && starX[i] != 100) {
+                if (player.y == starY[i] && starY[i] != 100) {
+                    score += 1;
+                    starX[i] = 100;
+                    starY[i] = 100;
+                }
+            }
+        }
+    }
 
-
-
-
-
-
+    function scoreUpdate(): void {
+        if (score == 1)
+            sterneScore.innerText = "Du hast bereits einen Stern gesammelt.";
+        else
+            sterneScore.innerText = "Du hast bereits " + score + " Sterne gesammelt.";
     }
 
 
