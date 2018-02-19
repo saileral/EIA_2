@@ -86,5 +86,7 @@ var Final;
         }
         drawField();
     }
+    function checkField() {
+    }
 })(Final || (Final = {}));
 //# sourceMappingURL=main.js.map

@@ -102,4 +102,24 @@ namespace Final {
 
         drawField();
     }
+
+    function checkField(): void {
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
