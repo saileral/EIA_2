@@ -17,16 +17,16 @@ namespace Final {
         }
 
         movePlayerX(_a: number): void {
-            if ((this.x + _a) < 0 || (this.x + _a) >= borders[0].length) 
-                return;           
-            if (borders[this.y][this.x + _a] == false) 
+            if ((this.x + _a) < 0 || (this.x + _a) >= borders[0].length)
+                return;
+            if (borders[this.y][this.x + _a] == false)
                 this.x += _a;
         }
 
         movePlayerY(_a: number): void {
-            if ((this.y + _a) < 0 || (this.y + _a) >= borders.length) 
+            if ((this.y + _a) < 0 || (this.y + _a) >= borders.length)
                 return;
-            if (borders[this.y + _a][this.x] == false) 
+            if (borders[this.y + _a][this.x] == false)
                 this.y += _a;
         }
     }

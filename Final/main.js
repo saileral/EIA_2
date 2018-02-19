@@ -9,11 +9,17 @@ var Final;
     Final.thickness = 30;
     var border;
     var player;
-    var star;
+    var starX = [2, 5, 20, 14, 27, 15];
+    var starY = [1, 13, 18, 5, 2, 11];
+    var star = [];
+    Final.score = 0;
+    Final.countdown = 200;
     function init() {
         Final.borders = []; //initialisiere borders
         player = new Final.Player(11, 0);
-        star = new Final.Stars(11 * Final.thickness, 3 * Final.thickness);
+        for (var i = 0; i < starX.length; i++) {
+            star[i] = new Final.Stars(starX[i], starY[i]);
+        }
         drawField();
     }
     function drawField() {
@@ -29,7 +35,7 @@ var Final;
             "# ## # ###      #  #  # ##   #\n" +
             "#    ##  ####### # #     #   #\n" +
             "#  ##    #  # #   # ## # # ###\n" +
-            "# # # ## #                   #\n" +
+            "# # # ## #      #            #\n" +
             "# #      # #  ######  ###  # #\n" +
             "#    ### # # #    #  #   # ###\n" +
             "#####  #   # #### ## # # #  ##\n" +
@@ -60,7 +66,9 @@ var Final;
             }
         }
         player.drawPlayer();
-        star.drawStar(5, 30, 15);
+        for (var i = 0; i < star.length; i++) {
+            star[i].drawStar(10, 5);
+        }
     }
     function handleKeydown(_event) {
         console.log(_event);

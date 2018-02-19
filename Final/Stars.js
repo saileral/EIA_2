@@ -12,39 +12,17 @@ var Final;
     var Stars = (function (_super) {
         __extends(Stars, _super);
         function Stars(_x, _y) {
-            _super.call(this, _x, _y);
+            _super.call(this, _x * Final.thickness + (Final.thickness / 2), _y * Final.thickness + (Final.thickness / 2));
         }
-        /* drawStar(spikes: number, r0: number, r1: number): void {
- 
-             var rot: number = Math.PI / 2 * 3, x: number = this.x, y: number = this.y, step: number = Math.PI / spikes;
- 
-             crc2.strokeStyle = "yellow";
-             crc2.beginPath();
-             crc2.moveTo(this.x, this.y - r0);
-             for (let i: number = 0; i < spikes; i++) {
-                 x = this.x + Math.cos(rot) * r0;
-                 y = this.y + Math.sin(rot) * r0;
-                 crc2.lineTo(x, y);
-                 rot += step;
- 
-                 x = this.x + Math.cos(rot) * r1;
-                 y = this.y + Math.sin(rot) * r1;
-                 crc2.lineTo(x, y);
-                 rot += step;
-             }
-             crc2.lineTo(this.x, this.y - r0);
-             crc2.stroke();
-             crc2.closePath();
-         }*/
-        Stars.prototype.drawStar = function (spikes, outerRadius, innerRadius) {
+        Stars.prototype.drawStar = function (outerRadius, innerRadius) {
             var rot = Math.PI / 2 * 3;
             var x = this.x;
             var y = this.y;
-            var step = Math.PI / spikes;
+            var step = Math.PI / 5;
             Final.crc2.strokeStyle = "#000";
             Final.crc2.beginPath();
             Final.crc2.moveTo(this.x, this.y - outerRadius);
-            for (var i = 0; i < spikes; i++) {
+            for (var i = 0; i < 5; i++) {
                 x = this.x + Math.cos(rot) * outerRadius;
                 y = this.y + Math.sin(rot) * outerRadius;
                 Final.crc2.lineTo(x, y);

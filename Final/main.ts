@@ -11,14 +11,21 @@ namespace Final {
     export let borders: boolean[][];
     let border: Border;
     let player: Player;
-    let star: Stars;
+    let starX: number[] = [2, 5, 20, 14, 27, 15];
+    let starY: number[] = [1, 13, 18, 5, 2, 11];
+    let star: Stars[] = [];
+    export let score: number = 0;
+    export let countdown: number = 200;
 
     function init(): void {
         borders = []; //initialisiere borders
 
         player = new Player(11, 0);
-        star = new Stars(11 * thickness, 3 * thickness);
-        
+
+        for (var i: number = 0; i < starX.length; i++) {
+            star[i] = new Stars(starX[i], starY[i]);
+        }
+
         drawField();
     }
 
@@ -36,7 +43,7 @@ namespace Final {
             "# ## # ###      #  #  # ##   #\n" +
             "#    ##  ####### # #     #   #\n" +
             "#  ##    #  # #   # ## # # ###\n" +
-            "# # # ## #                   #\n" +
+            "# # # ## #      #            #\n" +
             "# #      # #  ######  ###  # #\n" +
             "#    ### # # #    #  #   # ###\n" +
             "#####  #   # #### ## # # #  ##\n" +
@@ -73,7 +80,9 @@ namespace Final {
             }
         }
         player.drawPlayer();
-        star.drawStar(5, 30, 15);
+        for (var i: number = 0; i < star.length; i++) {
+            star[i].drawStar(10, 5);
+        }
     }
 
     function handleKeydown(_event: KeyboardEvent): void {
