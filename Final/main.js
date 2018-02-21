@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:14.02.2018
+     Datum:21.02.2018
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 var Final;
 (function (Final) {
@@ -23,6 +23,14 @@ var Final;
         drawField();
         sterneScore = document.getElementById("score");
         sterneScore.innerText = "Du hast noch keinen Stern gesammelt!";
+        var buttonHoch = document.getElementById("hoch");
+        buttonHoch.addEventListener("click", handleClickHoch);
+        var buttonLinks = document.getElementById("links");
+        buttonLinks.addEventListener("click", handleClickLinks);
+        var buttonRechts = document.getElementById("rechts");
+        buttonRechts.addEventListener("click", handleClickRechts);
+        var buttonRunter = document.getElementById("runter");
+        buttonRunter.addEventListener("click", handleClickRunter);
     }
     function drawField() {
         var canvas = document.getElementsByTagName("canvas")[0];
@@ -74,7 +82,6 @@ var Final;
         }
     }
     function handleKeydown(_event) {
-        console.log(_event);
         if (_event.keyCode == 40 || _event.keyCode == 83) {
             player.movePlayerY(1);
         }
@@ -89,8 +96,6 @@ var Final;
         }
         drawField();
         scoreUpdate();
-        console.log(player.x + " " + player.y);
-        console.log(score);
     }
     function checkField() {
         for (var i = 0; i < star.length; i++) {
@@ -107,10 +112,32 @@ var Final;
     }
     Final.checkField = checkField;
     function scoreUpdate() {
+        if (score == 0)
+            return;
         if (score == 1)
             sterneScore.innerText = "Du hast bereits einen Stern gesammelt.";
         else
             sterneScore.innerText = "Du hast bereits " + score + " Sterne gesammelt.";
+    }
+    function handleClickHoch(_event) {
+        player.movePlayerY(-1);
+        drawField();
+        scoreUpdate();
+    }
+    function handleClickLinks(_event) {
+        player.movePlayerX(-1);
+        drawField();
+        scoreUpdate();
+    }
+    function handleClickRechts(_event) {
+        player.movePlayerX(1);
+        drawField();
+        scoreUpdate();
+    }
+    function handleClickRunter(_event) {
+        player.movePlayerY(1);
+        drawField();
+        scoreUpdate();
     }
 })(Final || (Final = {}));
 //# sourceMappingURL=main.js.map

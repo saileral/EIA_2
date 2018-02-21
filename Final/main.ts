@@ -1,6 +1,6 @@
 /* Name:Alica Sailer
      Matrikel:256030
-     Datum:14.02.2018
+     Datum:21.02.2018
      Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und nicht diktiert. */
 namespace Final {
     window.addEventListener("load", init);
@@ -30,6 +30,15 @@ namespace Final {
 
         sterneScore = <HTMLDivElement>document.getElementById("score");
         sterneScore.innerText = "Du hast noch keinen Stern gesammelt!";
+
+        let buttonHoch: HTMLButtonElement = <HTMLButtonElement>document.getElementById("hoch");
+        buttonHoch.addEventListener("click", handleClickHoch);
+        let buttonLinks: HTMLButtonElement = <HTMLButtonElement>document.getElementById("links");
+        buttonLinks.addEventListener("click", handleClickLinks);
+        let buttonRechts: HTMLButtonElement = <HTMLButtonElement>document.getElementById("rechts");
+        buttonRechts.addEventListener("click", handleClickRechts);
+        let buttonRunter: HTMLButtonElement = <HTMLButtonElement>document.getElementById("runter");
+        buttonRunter.addEventListener("click", handleClickRunter);
     }
 
     function drawField(): void {
@@ -90,25 +99,21 @@ namespace Final {
     }
 
     function handleKeydown(_event: KeyboardEvent): void {
-        console.log(_event);
-        if (_event.keyCode == 40 || _event.keyCode == 83) {
+        if (_event.keyCode == 40 || _event.keyCode == 83) {//runter
             player.movePlayerY(1);
         }
-        if (_event.keyCode == 38 || _event.keyCode == 87) {
+        if (_event.keyCode == 38 || _event.keyCode == 87) {//hoch
             player.movePlayerY(-1);
         }
-        if (_event.keyCode == 39 || _event.keyCode == 68) {
+        if (_event.keyCode == 39 || _event.keyCode == 68) {//rechts
             player.movePlayerX(1);
         }
-        if (_event.keyCode == 37 || _event.keyCode == 65) {
+        if (_event.keyCode == 37 || _event.keyCode == 65) {//links
             player.movePlayerX(-1);
         }
 
         drawField();
         scoreUpdate();
-
-        console.log(player.x + " " + player.y);
-        console.log(score);
     }
 
     export function checkField(): void {
@@ -126,20 +131,39 @@ namespace Final {
     }
 
     function scoreUpdate(): void {
+        if (score == 0)
+            return;
         if (score == 1)
             sterneScore.innerText = "Du hast bereits einen Stern gesammelt.";
         else
             sterneScore.innerText = "Du hast bereits " + score + " Sterne gesammelt.";
     }
 
+    function handleClickHoch(_event: MouseEvent): void {
+        player.movePlayerY(-1);
 
+        drawField();
+        scoreUpdate();
+    }
 
+    function handleClickLinks(_event: MouseEvent): void {
+        player.movePlayerX(-1);
 
+        drawField();
+        scoreUpdate();
+    }
+    
+    function handleClickRechts(_event: MouseEvent): void {
+        player.movePlayerX(1);
 
+        drawField();
+        scoreUpdate();
+    }
 
+    function handleClickRunter(_event: MouseEvent): void {
+        player.movePlayerY(1);
 
-
-
-
-
+        drawField();
+        scoreUpdate();
+    }
 }
